@@ -43,7 +43,7 @@ const Checkout = () => {
   if (isSuccess) {
     return (
       <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '100px 20px', textAlign: 'center' }}>
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </motion.div>
         <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.5rem', marginBottom: '15px' }}>Purchase Complete</h2>
@@ -56,12 +56,12 @@ const Checkout = () => {
     return (
       <div style={{ textAlign: 'center', padding: '120px 20px', minHeight: '80vh' }}>
         <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem', marginBottom: '20px' }}>Your bag is currently empty</h2>
-        <Link to="/products" style={{ display: 'inline-block', padding: '16px 40px', backgroundColor: '#000', color: '#fff', borderRadius: '30px', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem' }}>ENTER ARCHIVE</Link>
+        <Link to="/products" style={{ display: 'inline-block', padding: '16px 40px', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', borderRadius: '30px', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem' }}>ENTER ARCHIVE</Link>
       </div>
     );
   }
 
-  const inputStyle = { width: '100%', padding: '14px 20px', borderRadius: '40px', border: '1px solid #EAEAEA', fontSize: '0.85rem', fontWeight: 500, outline: 'none', backgroundColor: '#fff', transition: 'border-color 0.2s', fontFamily: "'Inter', sans-serif" };
+  const inputStyle = { width: '100%', padding: '14px 20px', borderRadius: '40px', border: '1px solid #EAEAEA', fontSize: '0.85rem', fontWeight: 500, outline: 'none', backgroundColor: 'var(--surface-container-highest)', transition: 'border-color 0.2s', fontFamily: "'Inter', sans-serif" };
   const labelStyle = { display: 'block', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.1em', marginBottom: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)' };
   const sectionTitleStyle = { fontFamily: "'Playfair Display', serif", fontSize: '2.2rem', fontWeight: 500, marginBottom: '30px', borderBottom: '1px solid #F0F0F3', paddingBottom: '20px' };
 
@@ -111,7 +111,7 @@ const Checkout = () => {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                     <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      {shippingMethod === 'standard' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#000' }}></div>}
+                      {shippingMethod === 'standard' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--primary)' }}></div>}
                     </div>
                     <div>
                       <p style={{ fontSize: '0.85rem', fontWeight: 700 }}>Standard Shipping</p>
@@ -127,7 +127,7 @@ const Checkout = () => {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                     <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      {shippingMethod === 'express' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#000' }}></div>}
+                      {shippingMethod === 'express' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--primary)' }}></div>}
                     </div>
                     <div>
                       <p style={{ fontSize: '0.85rem', fontWeight: 700 }}>Express Shipping</p>
@@ -162,13 +162,13 @@ const Checkout = () => {
         </form>
 
         {/* Right Sidebar - Order Summary Card */}
-        <div style={{ position: 'sticky', top: '120px', backgroundColor: '#fff', borderRadius: '40px', padding: '40px', boxShadow: '0 20px 60px rgba(0,0,0,0.03)', border: '1px solid #F0F0F3' }}>
+        <div style={{ position: 'sticky', top: '120px', backgroundColor: 'var(--surface-container-highest)', borderRadius: '40px', padding: '40px', boxShadow: '0 20px 60px rgba(0,0,0,0.03)', border: '1px solid #F0F0F3' }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.8rem', marginBottom: '30px' }}>Order Summary</h3>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', maxHeight: '400px', overflowY: 'auto', marginBottom: '30px', paddingRight: '10px' }}>
             {cartItems.map(item => (
               <div key={item.id} style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                <div style={{ width: '70px', height: '70px', borderRadius: '15px', backgroundColor: '#F9F9FB', overflow: 'hidden', flexShrink: 0 }}>
+                <div style={{ width: '70px', height: '70px', borderRadius: '15px', backgroundColor: 'var(--surface)', overflow: 'hidden', flexShrink: 0 }}>
                   <img src={item.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={item.title} />
                 </div>
                 <div style={{ flex: 1 }}>
@@ -183,15 +183,15 @@ const Checkout = () => {
           <div style={{ borderTop: '1px solid #F0F0F3', paddingTop: '25px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                <span>Subtotal</span>
-               <span style={{ color: '#000' }}>${cartTotal.toFixed(2)}</span>
+               <span style={{ color: 'var(--primary)' }}>${cartTotal.toFixed(2)}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                <span>Shipping</span>
-               <span style={{ color: '#000' }}>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
+               <span style={{ color: 'var(--primary)' }}>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                <span>Estimated Tax</span>
-               <span style={{ color: '#000' }}>${tax.toFixed(2)}</span>
+               <span style={{ color: 'var(--primary)' }}>${tax.toFixed(2)}</span>
             </div>
             
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.2rem', fontWeight: 800, marginTop: '15px', paddingTop: '20px', borderTop: '2px solid #F0F0F3' }}>
@@ -201,7 +201,7 @@ const Checkout = () => {
 
             <button 
               onClick={handleSubmit(onSubmit)}
-              style={{ marginTop: '30px', width: '100%', padding: '20px 0', backgroundColor: '#000', color: '#fff', borderRadius: '40px', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }}
+              style={{ marginTop: '30px', width: '100%', padding: '20px 0', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', borderRadius: '40px', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }}
               onMouseOver={(e) => e.target.style.opacity=0.8}
               onMouseOut={(e) => e.target.style.opacity=1}
             >

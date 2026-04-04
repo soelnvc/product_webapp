@@ -48,16 +48,16 @@ const ProductDetails = () => {
   const sizes = ['S', 'M', 'L', 'XL'];
 
   return (
-    <div style={{ backgroundColor: '#F9F9FB', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         
         {/* Main Product Section */}
         <section style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '60px 40px', display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
             
             {/* Left Image Column */}
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ flex: '1.2 1 500px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div style={{ width: '100%', height: '700px', borderRadius: '35px', overflow: 'hidden', backgroundColor: '#F0F0F3', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: '100%', height: '700px', borderRadius: '35px', overflow: 'hidden', backgroundColor: 'var(--surface-container-low)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {!imgError ? (
-                        <img src={product.image} onError={() => setImgError(true)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={product.title} />
+                        <img src={product.image} onError={() => setImgError(true)} style={{ width: '100%', height: '100%', objectFit: 'cover', mixBlendMode: 'var(--image-blend, multiply)' }} alt={product.title} />
                     ) : (
                         <div style={{ textAlign: 'center' }}>
                            <p style={{ fontSize: '0.8rem', fontWeight: 800, color: '#C0C0C0', letterSpacing: '0.2em' }}>PRODUCT IMAGE<br/>COMING SOON</p>
@@ -65,7 +65,7 @@ const ProductDetails = () => {
                     )}
                     <button 
                         onClick={() => toggleWishlist(product)} 
-                        style={{ position: 'absolute', top: '30px', right: '30px', backgroundColor: '#fff', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', fontSize: '1.2rem', color: isInWishlist(product.id) ? '#000' : '#888', transition: 'transform 0.2s' }}
+                        style={{ position: 'absolute', top: '30px', right: '30px', backgroundColor: 'var(--surface-container-highest)', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', fontSize: '1.2rem', color: isInWishlist(product.id) ? '#000' : '#888', transition: 'transform 0.2s' }}
                         onMouseOver={(e) => e.currentTarget.style.transform='scale(1.1)'}
                         onMouseOut={(e) => e.currentTarget.style.transform='scale(1)'}
                     >
@@ -74,19 +74,19 @@ const ProductDetails = () => {
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', margin: '15px 0' }}>
-                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#000' }}></span>
+                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--primary)' }}></span>
                     <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#D0D0D0' }}></span>
                     <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#D0D0D0' }}></span>
                 </div>
 
                 {/* Decorative Thumbnails replicating the editorial layout */}
                 <div style={{ display: 'flex', gap: '20px', height: '240px' }}>
-                    <div style={{ flex: 1, backgroundColor: '#1A1D20', borderRadius: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px', color: '#fff' }}>
+                    <div style={{ flex: 1, backgroundColor: '#1A1D20', borderRadius: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px', color: 'var(--on-primary)' }}>
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" style={{ marginBottom: '15px' }}><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         <span style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.15em' }}>SAFE CHOICE</span>
                     </div>
-                    <div style={{ flex: 1, backgroundColor: '#34BCCC', borderRadius: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', position: 'relative' }}>
-                        <span style={{ fontSize: '5rem', fontWeight: 900, color: '#fff', transform: 'rotate(-5deg)', textShadow: '0 10px 20px rgba(0,0,0,0.1)' }}>SALE</span>
+                    <div style={{ flex: 1, backgroundColor: 'var(--surface-container-highest)', borderRadius: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', position: 'relative' }}>
+                        <span style={{ fontSize: '5rem', fontWeight: 900, color: 'var(--primary)', transform: 'rotate(-5deg)', textShadow: '0 10px 20px rgba(0,0,0,0.1)' }}>SALE</span>
                     </div>
                 </div>
             </motion.div>
@@ -98,7 +98,7 @@ const ProductDetails = () => {
                 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '30px', fontSize: '0.75rem', fontWeight: 700 }}>
                     <span style={{ display: 'flex', gap: '2px' }}>
-                        {'★★★★★'.split('').map((star, i) => <span key={i} style={{ color: '#000' }}>{star}</span>)}
+                        {'★★★★★'.split('').map((star, i) => <span key={i} style={{ color: 'var(--primary)' }}>{star}</span>)}
                     </span>
                     <span style={{ color: 'var(--text-secondary)' }}>(128 Reviews)</span>
                 </div>
@@ -128,7 +128,7 @@ const ProductDetails = () => {
                             <button 
                                 key={size}
                                 onClick={() => setSelectedSize(size)}
-                                style={{ width: '50px', height: '50px', borderRadius: '50%', border: selectedSize === size ? 'none' : '1px solid #D0D0D0', backgroundColor: selectedSize === size ? '#000' : 'transparent', color: selectedSize === size ? '#fff' : '#000', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
+                                style={{ width: '50px', height: '50px', borderRadius: '50%', border: selectedSize === size ? 'none' : '1px solid var(--outline-variant)', backgroundColor: selectedSize === size ? 'var(--primary)' : 'transparent', color: selectedSize === size ? 'var(--on-primary)' : 'var(--text-primary)', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
                             >
                                 {size}
                             </button>
@@ -138,13 +138,13 @@ const ProductDetails = () => {
 
                 {/* Buttons Stack */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '480px', marginBottom: '40px' }}>
-                    <button onClick={handleBuyNow} style={{ width: '100%', padding: '20px 0', borderRadius: '40px', backgroundColor: '#000', color: '#fff', fontSize: '0.85rem', fontWeight: 800, border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.target.style.opacity=0.8} onMouseOut={(e) => e.target.style.opacity=1}>
+                    <button onClick={handleBuyNow} style={{ width: '100%', padding: '20px 0', borderRadius: '40px', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', fontSize: '0.85rem', fontWeight: 800, border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.target.style.opacity=0.8} onMouseOut={(e) => e.target.style.opacity=1}>
                         Buy Now
                     </button>
-                    <button onClick={handleAddToBag} style={{ width: '100%', padding: '20px 0', borderRadius: '40px', backgroundColor: '#EAEAEA', color: '#000', fontSize: '0.85rem', fontWeight: 800, border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.target.style.opacity=0.8} onMouseOut={(e) => e.target.style.opacity=1}>
+                    <button onClick={handleAddToBag} style={{ width: '100%', padding: '20px 0', borderRadius: '40px', backgroundColor: 'var(--surface-container-highest)', color: 'var(--text-primary)', fontSize: '0.85rem', fontWeight: 800, border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.target.style.opacity=0.8} onMouseOut={(e) => e.target.style.opacity=1}>
                         Add to Bag
                     </button>
-                    <button onClick={() => setIsCartOpen(true)} style={{ width: '100%', padding: '18px 0', borderRadius: '40px', backgroundColor: 'transparent', color: '#000', fontSize: '0.85rem', fontWeight: 800, border: '1px solid #D0D0D0', textAlign: 'center', textDecoration: 'none', transition: 'border-color 0.2s', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor='#000'} onMouseOut={(e) => e.target.style.borderColor='#D0D0D0'}>
+                    <button onClick={() => setIsCartOpen(true)} style={{ width: '100%', padding: '18px 0', borderRadius: '40px', backgroundColor: 'transparent', color: 'var(--primary)', fontSize: '0.85rem', fontWeight: 800, border: '1px solid var(--outline-variant)', textAlign: 'center', textDecoration: 'none', transition: 'border-color 0.2s', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor='var(--primary)'} onMouseOut={(e) => e.target.style.borderColor='var(--outline-variant)'}>
                         View Bag
                     </button>
                 </div>
@@ -164,14 +164,14 @@ const ProductDetails = () => {
         </section>
 
         {/* Recommended Pairings Section */}
-        <section style={{ backgroundColor: '#F3F3F5', padding: '100px 40px', marginTop: '40px' }}>
+        <section style={{ backgroundColor: 'var(--surface-container-low)', padding: '100px 40px', marginTop: '40px' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px' }}>
                     <div>
                         <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.15em', color: 'var(--text-secondary)', marginBottom: '10px' }}>COMPLETE THE LOOK</p>
                         <h2 style={{ fontSize: '1.8rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Recommended Pairings</h2>
                     </div>
-                    <Link to="/products" style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textDecoration: 'underline', color: '#000' }}>VIEW ALL</Link>
+                    <Link to="/products" style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textDecoration: 'underline', color: 'var(--primary)' }}>VIEW ALL</Link>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
@@ -197,7 +197,7 @@ const ProductDetails = () => {
 
                     {/* Item 3 */}
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: '#EAEAEA' }}>
+                        <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: 'var(--archive-btn-bg)' }}>
                             <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Organic Cotton Tee" />
                         </div>
                         <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--text-secondary)', marginBottom: '5px' }}>BASICS</p>

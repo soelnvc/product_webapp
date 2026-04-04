@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -31,25 +32,27 @@ const Layout = ({ children }) => (
 
 function App() {
   return (
-    <CartProvider>
-      <WishlistProvider>
-        <CustomCursor />
-        <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<ProductExplorer />} />
-              <Route path="/new-arrivals" element={<NewArrivals />} />
-              <Route path="/archive" element={<Archive />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/wishlist" element={<Wishlist />} />
-            </Routes>
-          </Layout>
-        </BrowserRouter>
-      </WishlistProvider>
-    </CartProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <WishlistProvider>
+          <CustomCursor />
+          <BrowserRouter>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<ProductExplorer />} />
+                <Route path="/new-arrivals" element={<NewArrivals />} />
+                <Route path="/archive" element={<Archive />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/wishlist" element={<Wishlist />} />
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </WishlistProvider>
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 

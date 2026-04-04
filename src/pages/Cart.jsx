@@ -10,7 +10,7 @@ const Cart = () => {
   const finalTotal = cartTotal + tax;
 
   return (
-    <div style={{ backgroundColor: '#F9F9FB', minHeight: '100vh', padding: '0 40px', maxWidth: '1400px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', padding: '0 40px', maxWidth: '1400px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
       
       {/* Header Area */}
       <section style={{ marginTop: '80px', marginBottom: '80px' }}>
@@ -28,7 +28,7 @@ const Cart = () => {
             {cartItems.length === 0 ? (
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '60px 0', borderTop: '1px solid #EAEAEA' }}>
                   <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontStyle: 'italic', fontFamily: "'Playfair Display', serif", marginBottom: '20px' }}>Your cart is empty.</p>
-                  <Link to="/products" style={{ display: 'inline-block', padding: '12px 30px', backgroundColor: '#EAEAEA', color: '#000', borderRadius: '30px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textDecoration: 'none' }}>
+                  <Link to="/products" style={{ display: 'inline-block', padding: '12px 30px', backgroundColor: 'var(--archive-btn-bg)', color: 'var(--primary)', borderRadius: '30px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textDecoration: 'none' }}>
                      RETURN TO EXPLORE
                   </Link>
                </motion.div>
@@ -38,7 +38,7 @@ const Cart = () => {
                      
                      {/* Product Image */}
                      <Link to={`/product/${item.id}`} style={{ display: 'block', width: '220px', height: '280px', borderRadius: '25px', overflow: 'hidden', backgroundColor: '#F0F0F3', flexShrink: 0 }}>
-                         <img src={item.image} style={{ width: '100%', height: '100%', objectFit: 'cover', mixBlendMode: 'multiply' }} alt={item.title} />
+                         <img src={item.image} style={{ width: '100%', height: '100%', objectFit: 'cover', mixBlendMode: 'var(--image-blend, multiply)' }} alt={item.title} />
                      </Link>
 
                      {/* Product Details */}
@@ -84,21 +84,21 @@ const Cart = () => {
          <div style={{ position: 'sticky', top: '120px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             
             {/* Summary Card */}
-            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} style={{ backgroundColor: '#fff', borderRadius: '35px', padding: '40px', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} style={{ backgroundColor: 'var(--surface-container-highest)', borderRadius: '35px', padding: '40px', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', fontWeight: 800, marginBottom: '35px' }}>ORDER SUMMARY</h2>
                
                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '35px' }}>
                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
                        <span>Subtotal</span>
-                       <span style={{ color: '#000', fontWeight: 600 }}>${cartTotal.toFixed(2)}</span>
+                       <span style={{ color: 'var(--primary)', fontWeight: 600 }}>${cartTotal.toFixed(2)}</span>
                    </div>
                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500, alignItems: 'center' }}>
                        <span>Shipping</span>
-                       <span style={{ color: '#000', fontWeight: 800, fontSize: '0.7rem', letterSpacing: '0.1em' }}>COMPLIMENTARY</span>
+                       <span style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '0.7rem', letterSpacing: '0.1em' }}>COMPLIMENTARY</span>
                    </div>
                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
                        <span>Tax</span>
-                       <span style={{ color: '#000', fontWeight: 600 }}>${tax.toFixed(2)}</span>
+                       <span style={{ color: 'var(--primary)', fontWeight: 600 }}>${tax.toFixed(2)}</span>
                    </div>
                </div>
 
@@ -107,7 +107,7 @@ const Cart = () => {
                    <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.2rem', fontWeight: 800 }}>${finalTotal.toFixed(2)}</span>
                </div>
 
-               <Link to="/checkout" style={{ display: 'block', width: '100%', backgroundColor: '#000', color: '#fff', textAlign: 'center', padding: '18px 0', borderRadius: '30px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', textDecoration: 'none', transition: 'box-shadow 0.2s', marginBottom: '35px' }} onMouseOver={(e) => e.currentTarget.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'} onMouseOut={(e) => e.currentTarget.style.boxShadow='none'}>
+               <Link to="/checkout" style={{ display: 'block', width: '100%', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', textAlign: 'center', padding: '18px 0', borderRadius: '30px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', textDecoration: 'none', transition: 'box-shadow 0.2s', marginBottom: '35px' }} onMouseOver={(e) => e.currentTarget.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'} onMouseOut={(e) => e.currentTarget.style.boxShadow='none'}>
                   PROCEED TO CHECKOUT
                </Link>
 
@@ -127,8 +127,8 @@ const Cart = () => {
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} style={{ border: '1px dashed #D0D0D0', borderRadius: '35px', padding: '30px 40px', display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
                <p style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '0.05em' }}>HAVE A PROMOTIONAL CODE?</p>
                <div style={{ display: 'flex', width: '100%', gap: '10px', backgroundColor: '#F0F0F3', borderRadius: '25px', overflow: 'hidden' }}>
-                  <input type="text" placeholder="CODE" style={{ flex: 1, padding: '15px 20px', backgroundColor: 'transparent', border: 'none', fontSize: '0.8rem', outline: 'none', color: '#000', fontWeight: 500 }} />
-                  <button style={{ backgroundColor: 'transparent', color: '#000', border: 'none', padding: '0 25px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', cursor: 'pointer' }}>APPLY</button>
+                  <input type="text" placeholder="CODE" style={{ flex: 1, padding: '15px 20px', backgroundColor: 'transparent', border: 'none', fontSize: '0.8rem', outline: 'none', color: 'var(--primary)', fontWeight: 500 }} />
+                  <button style={{ backgroundColor: 'transparent', color: 'var(--primary)', border: 'none', padding: '0 25px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', cursor: 'pointer' }}>APPLY</button>
                </div>
             </motion.div>
 

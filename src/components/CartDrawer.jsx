@@ -41,7 +41,7 @@ const CartDrawer = () => {
                                     {cartItems.length} ITEMS SELECTED
                                 </p>
                             </div>
-                            <button onClick={() => setIsCartOpen(false)} style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#EAEAEA', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#000', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor='#D0D0D0'} onMouseOut={(e) => e.currentTarget.style.backgroundColor='#EAEAEA'}>
+                            <button onClick={() => setIsCartOpen(false)} style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'var(--archive-btn-bg)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--primary)', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor='#D0D0D0'} onMouseOut={(e) => e.currentTarget.style.backgroundColor='#EAEAEA'}>
                                 ✕
                             </button>
                         </div>
@@ -105,7 +105,7 @@ const CartDrawer = () => {
                                 <span style={{ fontSize: '1.3rem', fontWeight: 700 }}>${cartTotal.toFixed(2)}</span>
                             </div>
 
-                            <button onClick={handleCheckout} style={{ width: '100%', backgroundColor: '#000', color: '#fff', padding: '18px 0', borderRadius: '40px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.15em', border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.target.style.opacity = 0.8} onMouseOut={(e) => e.target.style.opacity = 1}>
+                            <button onClick={handleCheckout} style={{ width: '100%', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', padding: '18px 0', borderRadius: '40px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.15em', border: 'none', cursor: 'pointer', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.target.style.opacity = 0.8} onMouseOut={(e) => e.target.style.opacity = 1}>
                                 CHECKOUT
                             </button>
 

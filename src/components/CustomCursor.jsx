@@ -1,10 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 const CustomCursor = () => {
     const canvasRef = useRef(null);
     const mouse = useRef({ x: 0, y: 0 });
     const points = useRef([]);
-    const numPoints = 15; // Enough points to allow bending/curves
+    const numPoints = 25; // Enough points to allow bending/curves
+    const { isDark } = useTheme();
+    const isDarkRef = useRef(isDark);
+    
+    useEffect(() => {
+        isDarkRef.current = isDark;
+    }, [isDark]);
     
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -48,14 +55,15 @@ const CustomCursor = () => {
                 let prev = points.current[i - 1];
                 
                 // Extremely fast follow (0.8) makes the trail very short and "snappy"
-                p.x += (prev.x - p.x) * 0.75; 
-                p.y += (prev.y - p.y) * 0.75;
+                p.x += (prev.x - p.x) * 0.65; 
+                p.y += (prev.y - p.y) * 0.65;
             }
 
             // SMOOTH DRAWING with Midpoint Interpolation
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
-            ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+            const rgb = isDarkRef.current ? '230, 230, 230' : '0, 0, 0';
+            ctx.strokeStyle = `rgba(${rgb}, 0.4)`;
 
             for (let i = 0; i < numPoints - 1; i++) {
                 const p1 = points.current[i];
@@ -81,7 +89,7 @@ const CustomCursor = () => {
             // Fine Pen Tip
             ctx.beginPath();
             ctx.arc(mouse.current.x, mouse.current.y, 2.5, 0, Math.PI * 2);
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = isDarkRef.current ? '#e6e6e6' : 'black';
             ctx.fill();
 
             animationFrame = requestAnimationFrame(animate);

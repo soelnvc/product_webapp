@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const { cartCount } = useCart();
+  const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
-  const [isDark, setIsDark] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
 
@@ -22,22 +23,22 @@ const Navbar = () => {
   const isCollectionsPage = location.pathname.includes('/products');
   
   return (
-    <div style={{ padding: '20px 40px', position: 'sticky', top: 0, zIndex: 100, display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(253, 253, 255, 0.95)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.03)' }}>
+    <div style={{ padding: '20px 40px', position: 'sticky', top: 0, zIndex: 100, display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: isDark ? 'rgba(10, 10, 10, 0.95)' : 'rgba(253, 253, 255, 0.95)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)'}` }}>
       
       {/* Left Logo */}
-      <Link to="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 900, letterSpacing: '0.02em', color: '#000', textDecoration: 'none' }}>
+      <Link to="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 900, letterSpacing: '0.02em', color: 'var(--primary)', textDecoration: 'none' }}>
         THE CURATOR
       </Link>
       
       {/* Centered Navigation Links */}
       <nav style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '40px', fontSize: '0.85rem', fontWeight: 600 }}>
-        <Link to="/products" style={{ color: location.pathname.includes('/products') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/products') ? '2px solid #000' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/products')) e.target.style.color = '#000'; }} onMouseOut={(e) => { if (!location.pathname.includes('/products')) e.target.style.color = 'var(--text-secondary)'; }}>
+        <Link to="/products" style={{ color: location.pathname.includes('/products') ? 'var(--primary)' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/products') ? '2px solid var(--primary)' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/products')) e.target.style.color = 'var(--primary)'; }} onMouseOut={(e) => { if (!location.pathname.includes('/products')) e.target.style.color = 'var(--text-secondary)'; }}>
            Collections
         </Link>
-        <Link to="/new-arrivals" style={{ color: location.pathname.includes('/new-arrivals') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/new-arrivals') ? '2px solid #000' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/new-arrivals')) e.target.style.color = '#000'; }} onMouseOut={(e) => { if (!location.pathname.includes('/new-arrivals')) e.target.style.color = 'var(--text-secondary)'; }}>
+        <Link to="/new-arrivals" style={{ color: location.pathname.includes('/new-arrivals') ? 'var(--primary)' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/new-arrivals') ? '2px solid var(--primary)' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/new-arrivals')) e.target.style.color = 'var(--primary)'; }} onMouseOut={(e) => { if (!location.pathname.includes('/new-arrivals')) e.target.style.color = 'var(--text-secondary)'; }}>
            New Arrivals
         </Link>
-        <Link to="/archive" style={{ color: location.pathname.includes('/archive') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/archive') ? '2px solid #000' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/archive')) e.target.style.color = '#000'; }} onMouseOut={(e) => { if (!location.pathname.includes('/archive')) e.target.style.color = 'var(--text-secondary)'; }}>
+        <Link to="/archive" style={{ color: location.pathname.includes('/archive') ? 'var(--primary)' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/archive') ? '2px solid var(--primary)' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/archive')) e.target.style.color = 'var(--primary)'; }} onMouseOut={(e) => { if (!location.pathname.includes('/archive')) e.target.style.color = 'var(--text-secondary)'; }}>
            Archive
         </Link>
       </nav>
@@ -47,8 +48,8 @@ const Navbar = () => {
         
         {/* Theme Toggle (Light/Dark mode placeholder) */}
         <button 
-          onClick={() => setIsDark(!isDark)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', position: 'relative', overflow: 'hidden' }}
+          onClick={toggleTheme}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', position: 'relative', overflow: 'hidden' }}
         >
           <AnimatePresence mode="wait" initial={false}>
             {isDark ? (
@@ -96,20 +97,20 @@ const Navbar = () => {
                 placeholder="Search" 
                 value={searchQuery}
                 onChange={handleSearch}
-                style={{ width: '100%', padding: '10px 16px 10px 40px', backgroundColor: '#F0F0F3', border: 'none', borderRadius: '30px', fontSize: '0.75rem', fontWeight: 600, outline: 'none', fontFamily: "'Inter', sans-serif" }} 
+                style={{ width: '100%', padding: '10px 16px 10px 40px', backgroundColor: 'var(--surface-container-low)', color: 'var(--text-primary)', border: `1px solid var(--outline-variant)`, borderRadius: '30px', fontSize: '0.75rem', fontWeight: 600, outline: 'none', fontFamily: "'Inter', sans-serif" }} 
               />
           </div>
         )}
 
         {/* Wishlist Link */}
-        <Link to="/wishlist" style={{ color: '#000', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+        <Link to="/wishlist" style={{ color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
            <svg width="18" height="18" viewBox="0 0 24 24" fill={location.pathname.includes('/wishlist') ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </Link>
         
         {/* Full Cart Link */}
-        <Link to="/cart" style={{ color: '#000', position: 'relative', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+        <Link to="/cart" style={{ color: 'var(--primary)', position: 'relative', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill={location.pathname.includes('/cart') ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            {cartCount > 0 && <span style={{ position: 'absolute', top: '-6px', right: '-12px', background: '#000', color: '#fff', borderRadius: '30px', padding: '0 5px', minWidth: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', fontWeight: '800' }}>{cartCount}</span>}
+            {cartCount > 0 && <span style={{ position: 'absolute', top: '-6px', right: '-12px', background: 'var(--primary)', color: 'var(--on-primary)', borderRadius: '30px', padding: '0 5px', minWidth: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', fontWeight: '800' }}>{cartCount}</span>}
         </Link>
 
       </div>

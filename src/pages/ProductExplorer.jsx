@@ -40,7 +40,7 @@ const ProductExplorer = () => {
   });
 
   return (
-    <div style={{ backgroundColor: '#F9F9FB', minHeight: '100vh', padding: '0 40px', maxWidth: '1600px', margin: '0 auto', display: 'flex' }}>
+    <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', padding: '0 40px', maxWidth: '1600px', margin: '0 auto', display: 'flex' }}>
       
       {/* Sidebar Filters */}
       <aside style={{ width: '220px', padding: '60px 20px 60px 0', position: 'sticky', top: '80px', height: 'calc(100vh - 80px)', display: 'flex', flexDirection: 'column' }}>
@@ -78,7 +78,7 @@ const ProductExplorer = () => {
               min="0" max="1500" 
               value={priceRange} 
               onChange={(e) => setPriceRange(e.target.value)}
-              style={{ width: '100%', cursor: 'pointer', accentColor: '#000' }}
+              style={{ width: '100%', cursor: 'pointer', accentcolor: 'var(--primary)' }}
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px', fontSize: '0.75rem', fontWeight: 700 }}>
               <span>$0</span>

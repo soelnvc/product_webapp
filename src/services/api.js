@@ -24,7 +24,7 @@ export const newArrivalsInventory = [
   { type: 'tall', title: 'Cashmere Cardigan', price: '$940', img: 'https://images.unsplash.com/photo-1582126893264-902ba4033b00?q=80&w=800&auto=format&fit=crop' },
   { type: 'wide', title: 'Oblique Sunglasses', price: '$350', img: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1000&auto=format&fit=crop', limited: false },
   { type: 'square', title: 'Structured Blazer', price: '$1,200', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop', grayscale: true },
-  { type: 'square', title: 'Silk Wrap Skirt', price: '$580', img: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=600&auto=format&fit=crop', background: '#fff' },
+  { type: 'square', title: 'Silk Wrap Skirt', price: '$580', img: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=600&auto=format&fit=crop', background: 'var(--surface-container-highest)' },
   { type: 'square', title: 'Leather Loafer', price: '$720', img: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=600&auto=format&fit=crop', background: '#E0E0E0' },
   { type: 'philosophy', title: 'The Modern Form', desc: 'Sartorial innovation meeting daily wearability without compromise on form or function.', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop' },
 

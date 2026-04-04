@@ -16,6 +16,27 @@
   --bg-color: var(--surface);
   --text-primary: var(--on-surface);
   --text-secondary: var(--on-surface-variant);
+  
+  --image-blend: multiply;
+  --archive-btn-bg: #eaeaea;
+  --archive-btn-text: var(--primary);
+}
+
+[data-theme='dark'] {
+  --surface: #0a0a0a;             
+  --surface-container-low: #141414;
+  --surface-container-highest: #1f1f1f;
+  
+  --primary: #ffffff;
+  --on-primary: #000000;
+  
+  --on-surface: #e5e5e5;
+  --on-surface-variant: #a3a3a3;
+  --outline-variant: #404040;
+  
+  --image-blend: normal;
+  --archive-btn-bg: var(--primary);
+  --archive-btn-text: var(--on-primary);
 }
 
 /* Force light mode to preserve the "Gallery" aesthetic regardless of OS preference */

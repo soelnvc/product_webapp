@@ -19,7 +19,7 @@ const NewArrivals = () => {
   const displayedItems = newArrivalsInventory.slice(0, loadCount * 6);
 
   return (
-    <div style={{ backgroundColor: '#F9F9FB', minHeight: '100vh', padding: '0 40px', maxWidth: '1600px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', padding: '0 40px', maxWidth: '1600px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
       
       {/* Main Grid Area */}
       <main style={{ flex: 1, padding: '40px 0 100px 0' }}>
@@ -44,7 +44,7 @@ const NewArrivals = () => {
                   <motion.div key={idx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: baseDelay }} style={{ gridColumn: 'span 1', gridRow: 'span 2', position: 'relative', borderRadius: '35px', overflow: 'hidden', minHeight: '600px' }}>
                     <Link to={`/product/na-${idx}`} style={{ display: 'block', width: '100%', height: '100%', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.currentTarget.style.opacity = '0.9'} onMouseOut={(e) => e.currentTarget.style.opacity = '1'}>
                       <img src={item.img} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={item.title} />
-                      <div style={{ position: 'absolute', bottom: '30px', left: '30px', right: '30px', display: 'flex', justifyContent: 'space-between', color: '#fff', alignItems: 'center', zIndex: 10 }}>
+                      <div style={{ position: 'absolute', bottom: '30px', left: '30px', right: '30px', display: 'flex', justifyContent: 'space-between', color: 'var(--on-primary)', alignItems: 'center', zIndex: 10 }}>
                         <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>{item.title}</h3>
                         <p style={{ fontSize: '1rem', fontWeight: 800 }}>{item.price}</p>
                       </div>
@@ -59,8 +59,8 @@ const NewArrivals = () => {
                   <motion.div key={idx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: baseDelay }} style={{ gridColumn: 'span 2', gridRow: 'span 1', position: 'relative', borderRadius: '35px', overflow: 'hidden' }}>
                     <Link to={`/product/na-${idx}`} style={{ display: 'block', width: '100%', height: '100%', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.currentTarget.style.opacity = '0.9'} onMouseOut={(e) => e.currentTarget.style.opacity = '1'}>
                       <img src={item.img} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={item.title} />
-                      {item.limited && <div style={{ position: 'absolute', top: '25px', right: '25px', backgroundColor: '#fff', color: '#000', fontSize: '0.6rem', fontWeight: 800, padding: '8px 16px', borderRadius: '20px', letterSpacing: '0.1em' }}>LIMITED EDITION</div>}
-                      <div style={{ position: 'absolute', bottom: '25px', left: '25px', right: '25px', display: 'flex', justifyContent: 'space-between', color: '#fff', alignItems: 'flex-end', textShadow: '0 4px 12px rgba(0,0,0,0.6)' }}>
+                      {item.limited && <div style={{ position: 'absolute', top: '25px', right: '25px', backgroundColor: 'var(--surface-container-highest)', color: 'var(--primary)', fontSize: '0.6rem', fontWeight: 800, padding: '8px 16px', borderRadius: '20px', letterSpacing: '0.1em' }}>LIMITED EDITION</div>}
+                      <div style={{ position: 'absolute', bottom: '25px', left: '25px', right: '25px', display: 'flex', justifyContent: 'space-between', color: 'var(--on-primary)', alignItems: 'flex-end', textShadow: '0 4px 12px rgba(0,0,0,0.6)' }}>
                         <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem', fontWeight: 600 }}>{item.title}</h3>
                         <p style={{ fontSize: '0.9rem', fontWeight: 700 }}>{item.price}</p>
                       </div>
@@ -71,12 +71,12 @@ const NewArrivals = () => {
 
              if (shape === 5) { // Philosophy Dark Box
                return (
-                  <motion.div key={idx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: baseDelay }} style={{ gridColumn: 'span 2', gridRow: 'span 1', backgroundColor: '#000', borderRadius: '35px', padding: '50px', color: '#fff', display: 'flex', gap: '40px', alignItems: 'center' }}>
+                  <motion.div key={idx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: baseDelay }} style={{ gridColumn: 'span 2', gridRow: 'span 1', backgroundColor: 'var(--primary)', borderRadius: '35px', padding: '50px', color: 'var(--on-primary)', display: 'flex', gap: '40px', alignItems: 'center' }}>
                     <div style={{ flex: 1.2 }}>
                       <p style={{ fontSize: '0.6rem', letterSpacing: '0.2em', fontWeight: 600, color: '#888', marginBottom: '20px' }}>THE PHILOSOPHY</p>
                       <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.5rem', lineHeight: 1.1, marginBottom: '25px' }}>{item.title}</h2>
                       <p style={{ fontSize: '0.85rem', color: '#aaa', lineHeight: 1.6, marginBottom: '40px' }}>{item.desc}</p>
-                      <Link to={`/product/na-${idx}`} style={{ display: 'inline-block', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '30px', padding: '14px 30px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.05em', cursor: 'pointer', transition: 'opacity 0.2s', textDecoration: 'none' }} onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'} onMouseOut={(e) => e.currentTarget.style.opacity = '1'}>EXPLORE JOURNAL</Link>
+                      <Link to={`/product/na-${idx}`} style={{ display: 'inline-block', backgroundColor: 'var(--surface-container-highest)', color: 'var(--primary)', border: 'none', borderRadius: '30px', padding: '14px 30px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.05em', cursor: 'pointer', transition: 'opacity 0.2s', textDecoration: 'none' }} onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'} onMouseOut={(e) => e.currentTarget.style.opacity = '1'}>EXPLORE JOURNAL</Link>
                     </div>
                     <Link to={`/product/na-${idx}`} style={{ flex: 1, height: '100%', borderRadius: '25px', overflow: 'hidden', display: 'block', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'} onMouseOut={(e) => e.currentTarget.style.opacity = '1'}>
                       <img src={item.img} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6, mixBlendMode: 'luminosity' }} alt="Texture" />

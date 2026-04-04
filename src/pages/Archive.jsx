@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Archive = () => {
   return (
-    <div style={{ backgroundColor: '#F9F9FB', minHeight: '100vh', padding: '0 40px', maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', padding: '0 40px', maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
       
       {/* Header Area */}
       <section style={{ position: 'relative', marginTop: '80px', marginBottom: '100px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -58,7 +58,7 @@ const Archive = () => {
          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} style={{ flex: 1, position: 'relative', borderRadius: '25px', overflow: 'hidden', aspectRatio: '4/5', backgroundColor: '#222' }}>
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) brightness(0.7) contrast(1.2)' }} alt="Brutalist Architecture" />
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%)' }}></div>
-            <div style={{ position: 'absolute', bottom: '40px', left: '40px', color: '#fff' }}>
+            <div style={{ position: 'absolute', bottom: '40px', left: '40px', color: 'var(--on-primary)' }}>
                <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '8px', color: '#aaa' }}>COMING WINTER</p>
                <h3 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '2.2rem', fontWeight: 500 }}>Collection 002</h3>
             </div>
@@ -86,11 +86,11 @@ const Archive = () => {
                   <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.2)' }} alt="Watch Hand" />
                </motion.div>
                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }} style={{ flex: 1, borderRadius: '25px', overflow: 'hidden', backgroundColor: '#E0E0E0' }}>
-                  <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.2) brightness(1.2)', mixBlendMode: 'multiply' }} alt="Shoe" />
+                  <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.2) brightness(1.2)', mixBlendMode: 'var(--image-blend, multiply)' }} alt="Shoe" />
                </motion.div>
             </div>
             
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.5 }} style={{ flex: 1, backgroundColor: '#fff', borderRadius: '25px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px', textAlign: 'center' }}>
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.5 }} style={{ flex: 1, backgroundColor: 'var(--surface-container-highest)', borderRadius: '25px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px', textAlign: 'center' }}>
                <h3 style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '2.5rem', fontWeight: 500, marginBottom: '20px' }}>"Fashion fades, style is eternal."</h3>
                <p style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', letterSpacing: '0.25em', textTransform: 'uppercase' }}>YVES SAINT LAURENT</p>
             </motion.div>

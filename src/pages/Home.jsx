@@ -38,7 +38,7 @@ const Home = () => {
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(5rem, 10vw, 8rem)', fontStyle: 'italic', fontWeight: 500, lineHeight: 1.1, marginBottom: '40px' }}>
             The Essence<br/>of Form
           </h1>
-          <Link to="/archive" style={{ display: 'inline-block', backgroundColor: '#000', color: '#fff', padding: '16px 40px', borderRadius: '30px', fontWeight: 600, fontSize: '0.875rem', letterSpacing: '0.05em', transition: 'transform 0.2s', textDecoration: 'none' }} onMouseOver={(e) => e.target.style.transform='scale(1.05)'} onMouseOut={(e) => e.target.style.transform='scale(1)'}>
+          <Link to="/archive" style={{ display: 'inline-block', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', padding: '16px 40px', borderRadius: '30px', fontWeight: 600, fontSize: '0.875rem', letterSpacing: '0.05em', transition: 'transform 0.2s', textDecoration: 'none' }} onMouseOver={(e) => e.target.style.transform='scale(1.05)'} onMouseOut={(e) => e.target.style.transform='scale(1)'}>
             ENTER THE ARCHIVE
           </Link>
         </div>
@@ -52,7 +52,7 @@ const Home = () => {
         >
           <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', aspectRatio: '3/4', border: '8px solid white', backgroundColor: '#f0f0f0' }}>
             <img src={heroModel} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Model" />
-            <Link to="/products" style={{ position: 'absolute', bottom: '15px', left: '15px', backgroundColor: '#fff', padding: '12px 20px', borderRadius: '30px', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.1em', color: '#000', textDecoration: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.2s' }} onMouseOver={(e) => e.currentTarget.style.transform='scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform='scale(1)'}>
+            <Link to="/products" style={{ position: 'absolute', bottom: '15px', left: '15px', backgroundColor: 'var(--surface-container-highest)', padding: '12px 20px', borderRadius: '30px', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--primary)', textDecoration: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.2s' }} onMouseOver={(e) => e.currentTarget.style.transform='scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform='scale(1)'}>
               THE COLLECTION
             </Link>
           </div>
@@ -99,7 +99,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}
             style={{ position: 'absolute', bottom: '0', left: '0', width: '55%', aspectRatio: '4/3', borderRadius: '30px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
              <img src={booksImg} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Books" />
-             <div style={{ position: 'absolute', bottom: '30px', left: '30px', color: '#fff' }}>
+             <div style={{ position: 'absolute', bottom: '30px', left: '30px', color: 'var(--on-primary)' }}>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>Objects & Artifacts</h3>
                 <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}>S/S 2024 ACCESSORIES</p>
              </div>
@@ -109,7 +109,7 @@ const Home = () => {
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
             style={{ position: 'absolute', top: '30%', right: '5%', width: '35%', aspectRatio: '3/5', borderRadius: '30px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
              <img src={editorialImg} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Editorial" />
-              <div style={{ position: 'absolute', bottom: '30px', width: '100%', textAlign: 'center', color: '#fff' }}>
+              <div style={{ position: 'absolute', bottom: '30px', width: '100%', textAlign: 'center', color: 'var(--on-primary)' }}>
                 <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em', marginBottom: '5px' }}>THE ATELIER EXPERIENCE</p>
                 <Link to="/products" style={{ fontSize: '0.8rem', textDecoration: 'underline' }}>DISCOVER MORE</Link>
              </div>
@@ -151,7 +151,7 @@ const Home = () => {
       </section>
 
       {/* Scrolling Marquee */}
-      <div style={{ backgroundColor: '#000', color: '#fff', padding: '40px 0', overflow: 'hidden', whiteSpace: 'nowrap', marginTop: '100px' }}>
+      <div style={{ backgroundColor: 'var(--primary)', color: 'var(--on-primary)', padding: '40px 0', overflow: 'hidden', whiteSpace: 'nowrap', marginTop: '100px' }}>
         <motion.div 
           animate={{ x: [0, -1000] }}
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
