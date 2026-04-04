@@ -22,7 +22,7 @@ const CartDrawer = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setIsCartOpen(false)}
-                        style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(255,255,255,0.4)', backdropFilter: 'blur(8px)', zIndex: 900 }}
+                        style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--drawer-overlay)', backdropFilter: 'blur(8px)', zIndex: 900 }}
                     />
                     
                     {/* The Right-Side Panel */}
@@ -31,7 +31,7 @@ const CartDrawer = () => {
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        style={{ position: 'fixed', top: 0, right: 0, width: '100%', maxWidth: '420px', height: '100vh', backgroundColor: 'rgba(250, 250, 250, 0.75)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderLeft: '1px solid rgba(255,255,255,0.4)', zIndex: 1000, display: 'flex', flexDirection: 'column', boxShadow: '-20px 0 50px rgba(0,0,0,0.08)' }}
+                        style={{ position: 'fixed', top: 0, right: 0, width: '100%', maxWidth: '420px', height: '100vh', backgroundColor: 'var(--drawer-bg)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderLeft: '1px solid var(--drawer-border)', zIndex: 1000, display: 'flex', flexDirection: 'column', boxShadow: '-20px 0 50px rgba(0,0,0,0.08)' }}
                     >
                         {/* Header Block */}
                         <div style={{ padding: '30px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -41,7 +41,7 @@ const CartDrawer = () => {
                                     {cartItems.length} ITEMS SELECTED
                                 </p>
                             </div>
-                            <button onClick={() => setIsCartOpen(false)} style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'var(--archive-btn-bg)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--primary)', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor='#D0D0D0'} onMouseOut={(e) => e.currentTarget.style.backgroundColor='#EAEAEA'}>
+                            <button onClick={() => setIsCartOpen(false)} style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'var(--surface-container-highest)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-primary)', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor='var(--outline-variant)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor='var(--surface-container-highest)'}>
                                 ✕
                             </button>
                         </div>
@@ -72,7 +72,7 @@ const CartDrawer = () => {
 
                                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '15px' }}>
                                                     {/* Pill Counter */}
-                                                    <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#F0F0F3', borderRadius: '20px', padding: '2px' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'var(--surface-container-highest)', borderRadius: '20px', padding: '2px' }}>
                                                         <button onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))} style={{ padding: '6px 12px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}>−</button>
                                                         <span style={{ fontSize: '0.75rem', fontWeight: 600, minWidth: '16px', textAlign: 'center' }}>{item.quantity}</span>
                                                         <button onClick={() => updateQuantity(item.id, item.quantity + 1)} style={{ padding: '6px 12px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.9rem' }}>+</button>
@@ -91,7 +91,7 @@ const CartDrawer = () => {
                         </div>
 
                         {/* Sticky Footer Summary Block */}
-                        <div style={{ padding: '30px 40px 40px 40px', backgroundColor: 'rgba(255, 255, 255, 0.65)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                        <div style={{ padding: '30px 40px 40px 40px', backgroundColor: 'var(--drawer-footer)', backdropFilter: 'blur(10px)', borderTop: '1px solid var(--outline-variant)', display: 'flex', flexDirection: 'column', gap: '15px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                                 <span>Subtotal</span>
                                 <span>${cartTotal.toFixed(2)}</span>

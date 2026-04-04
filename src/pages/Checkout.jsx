@@ -61,12 +61,12 @@ const Checkout = () => {
     );
   }
 
-  const inputStyle = { width: '100%', padding: '14px 20px', borderRadius: '40px', border: '1px solid #EAEAEA', fontSize: '0.85rem', fontWeight: 500, outline: 'none', backgroundColor: 'var(--surface-container-highest)', transition: 'border-color 0.2s', fontFamily: "'Inter', sans-serif" };
+  const inputStyle = { width: '100%', padding: '14px 20px', borderRadius: '40px', border: '1px solid var(--outline-variant)', fontSize: '0.85rem', fontWeight: 500, outline: 'none', backgroundColor: 'var(--surface-container-highest)', color: 'var(--text-primary)', transition: 'border-color 0.2s', fontFamily: "'Inter', sans-serif" };
   const labelStyle = { display: 'block', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.1em', marginBottom: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)' };
-  const sectionTitleStyle = { fontFamily: "'Playfair Display', serif", fontSize: '2.2rem', fontWeight: 500, marginBottom: '30px', borderBottom: '1px solid #F0F0F3', paddingBottom: '20px' };
+  const sectionTitleStyle = { fontFamily: "'Playfair Display', serif", fontSize: '2.2rem', fontWeight: 500, marginBottom: '30px', color: 'var(--text-primary)', borderBottom: '1px solid var(--outline-variant)', paddingBottom: '20px' };
 
   return (
-    <div style={{ backgroundColor: '#FDFDFD', minHeight: '100vh', padding: '60px 40px' }}>
+    <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', padding: '60px 40px' }}>
       <div style={{ maxWidth: '1300px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 420px', gap: '80px', alignItems: 'start' }}>
         
         {/* Left Form Side */}
@@ -78,25 +78,25 @@ const Checkout = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
                <div>
                   <label style={labelStyle}>First Name</label>
-                  <input {...register('firstName')} placeholder="John" style={{ ...inputStyle, borderColor: errors.firstName ? '#ff4d4d' : '#EAEAEA' }} />
+                  <input {...register('firstName')} placeholder="John" style={{ ...inputStyle, borderColor: errors.firstName ? '#ff4d4d' : 'var(--outline-variant)' }} />
                </div>
                <div>
                   <label style={labelStyle}>Last Name</label>
-                  <input {...register('lastName')} placeholder="Doe" style={{ ...inputStyle, borderColor: errors.lastName ? '#ff4d4d' : '#EAEAEA' }} />
+                  <input {...register('lastName')} placeholder="Doe" style={{ ...inputStyle, borderColor: errors.lastName ? '#ff4d4d' : 'var(--outline-variant)' }} />
                </div>
             </div>
             <div style={{ marginBottom: '20px' }}>
                <label style={labelStyle}>Address</label>
-               <input {...register('address')} placeholder="123 Curator Street" style={{ ...inputStyle, borderColor: errors.address ? '#ff4d4d' : '#EAEAEA' }} />
+               <input {...register('address')} placeholder="123 Curator Street" style={{ ...inputStyle, borderColor: errors.address ? '#ff4d4d' : 'var(--outline-variant)' }} />
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                <div>
                   <label style={labelStyle}>City</label>
-                  <input {...register('city')} placeholder="New York" style={{ ...inputStyle, borderColor: errors.city ? '#ff4d4d' : '#EAEAEA' }} />
+                  <input {...register('city')} placeholder="New York" style={{ ...inputStyle, borderColor: errors.city ? '#ff4d4d' : 'var(--outline-variant)' }} />
                </div>
                <div>
                   <label style={labelStyle}>Zip Code</label>
-                  <input {...register('zipCode')} placeholder="10001" style={{ ...inputStyle, borderColor: errors.zipCode ? '#ff4d4d' : '#EAEAEA' }} />
+                  <input {...register('zipCode')} placeholder="10001" style={{ ...inputStyle, borderColor: errors.zipCode ? '#ff4d4d' : 'var(--outline-variant)' }} />
                </div>
             </div>
           </section>
@@ -107,10 +107,10 @@ const Checkout = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <div 
                   onClick={() => setShippingMethod('standard')}
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '24px 30px', borderRadius: '40px', border: `2px solid ${shippingMethod === 'standard' ? '#000' : '#EAEAEA'}`, cursor: 'pointer', transition: 'all 0.2s' }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '24px 30px', borderRadius: '40px', border: `2px solid ${shippingMethod === 'standard' ? 'var(--primary)' : 'var(--outline-variant)'}`, cursor: 'pointer', transition: 'all 0.2s' }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {shippingMethod === 'standard' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--primary)' }}></div>}
                     </div>
                     <div>
@@ -123,10 +123,10 @@ const Checkout = () => {
 
                 <div 
                   onClick={() => setShippingMethod('express')}
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '24px 30px', borderRadius: '40px', border: `2px solid ${shippingMethod === 'express' ? '#000' : '#EAEAEA'}`, cursor: 'pointer', transition: 'all 0.2s' }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '24px 30px', borderRadius: '40px', border: `2px solid ${shippingMethod === 'express' ? 'var(--primary)' : 'var(--outline-variant)'}`, cursor: 'pointer', transition: 'all 0.2s' }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {shippingMethod === 'express' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--primary)' }}></div>}
                     </div>
                     <div>
@@ -144,17 +144,17 @@ const Checkout = () => {
             <h2 style={sectionTitleStyle}>Payment Details</h2>
             <div style={{ marginBottom: '20px', position: 'relative' }}>
                <label style={labelStyle}>Card Number</label>
-               <input {...register('cardNumber')} placeholder="0000 0000 0000 0000" style={{ ...inputStyle, paddingRight: '50px', borderColor: errors.cardNumber ? '#ff4d4d' : '#EAEAEA' }} />
+               <input {...register('cardNumber')} placeholder="0000 0000 0000 0000" style={{ ...inputStyle, paddingRight: '50px', borderColor: errors.cardNumber ? '#ff4d4d' : 'var(--outline-variant)' }} />
                <svg style={{ position: 'absolute', right: '20px', top: '42px', opacity: 0.5 }} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                <div>
                   <label style={labelStyle}>Expiry Date</label>
-                  <input {...register('expiry')} placeholder="MM/YY" style={{ ...inputStyle, borderColor: errors.expiry ? '#ff4d4d' : '#EAEAEA' }} />
+                  <input {...register('expiry')} placeholder="MM/YY" style={{ ...inputStyle, borderColor: errors.expiry ? '#ff4d4d' : 'var(--outline-variant)' }} />
                </div>
                <div>
                   <label style={labelStyle}>CVC</label>
-                  <input {...register('cvc')} placeholder="123" style={{ ...inputStyle, borderColor: errors.cvc ? '#ff4d4d' : '#EAEAEA' }} />
+                  <input {...register('cvc')} placeholder="123" style={{ ...inputStyle, borderColor: errors.cvc ? '#ff4d4d' : 'var(--outline-variant)' }} />
                </div>
             </div>
           </section>
@@ -162,7 +162,7 @@ const Checkout = () => {
         </form>
 
         {/* Right Sidebar - Order Summary Card */}
-        <div style={{ position: 'sticky', top: '120px', backgroundColor: 'var(--surface-container-highest)', borderRadius: '40px', padding: '40px', boxShadow: '0 20px 60px rgba(0,0,0,0.03)', border: '1px solid #F0F0F3' }}>
+        <div style={{ position: 'sticky', top: '120px', backgroundColor: 'var(--surface-container-highest)', borderRadius: '40px', padding: '40px', boxShadow: '0 20px 60px rgba(0,0,0,0.03)', border: '1px solid var(--outline-variant)' }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.8rem', marginBottom: '30px' }}>Order Summary</h3>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', maxHeight: '400px', overflowY: 'auto', marginBottom: '30px', paddingRight: '10px' }}>
@@ -180,7 +180,7 @@ const Checkout = () => {
             ))}
           </div>
 
-          <div style={{ borderTop: '1px solid #F0F0F3', paddingTop: '25px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ borderTop: '1px solid var(--outline-variant)', paddingTop: '25px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                <span>Subtotal</span>
                <span style={{ color: 'var(--primary)' }}>${cartTotal.toFixed(2)}</span>
@@ -194,7 +194,7 @@ const Checkout = () => {
                <span style={{ color: 'var(--primary)' }}>${tax.toFixed(2)}</span>
             </div>
             
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.2rem', fontWeight: 800, marginTop: '15px', paddingTop: '20px', borderTop: '2px solid #F0F0F3' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.2rem', fontWeight: 800, marginTop: '15px', paddingTop: '20px', borderTop: '2px solid var(--outline-variant)' }}>
                <span>Total</span>
                <span>${finalTotal.toFixed(2)}</span>
             </div>

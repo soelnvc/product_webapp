@@ -101,12 +101,12 @@ const NewArrivals = () => {
 
         </div>
 
-        <div style={{ marginTop: '80px', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+        <div style={{ marginTop: '80px', borderTop: '1px solid var(--outline-variant)', paddingTop: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em', color: 'var(--text-secondary)' }}>SHOWING {displayedItems.length} OF 24 ITEMS</p>
           <button 
             onClick={handleLoadMore}
             disabled={isAppending || loadCount >= 4}
-            style={{ backgroundColor: isAppending ? '#f0f0f3' : 'transparent', border: isAppending ? '1px solid transparent' : '1px solid #000', borderRadius: '30px', padding: '15px 40px', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.05em', cursor: isAppending ? 'wait' : (loadCount >= 4 ? 'not-allowed' : 'pointer'), transition: 'all 0.2s', filter: isAppending || loadCount >= 4 ? 'opacity(0.5)' : 'none' }}>
+            style={{ backgroundColor: isAppending ? 'var(--surface-container-highest)' : 'transparent', border: isAppending ? '1px solid transparent' : '1px solid var(--outline-variant)', color: 'var(--text-primary)', borderRadius: '30px', padding: '15px 40px', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.05em', cursor: isAppending ? 'wait' : (loadCount >= 4 ? 'not-allowed' : 'pointer'), transition: 'all 0.2s', filter: isAppending || loadCount >= 4 ? 'opacity(0.5)' : 'none' }}>
             {loadCount >= 4 ? 'END OF COLLECTION' : (isAppending ? 'LOADING...' : 'LOAD MORE')}
           </button>
         </div>

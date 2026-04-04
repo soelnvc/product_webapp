@@ -65,7 +65,7 @@ const ProductDetails = () => {
                     )}
                     <button 
                         onClick={() => toggleWishlist(product)} 
-                        style={{ position: 'absolute', top: '30px', right: '30px', backgroundColor: 'var(--surface-container-highest)', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', fontSize: '1.2rem', color: isInWishlist(product.id) ? '#000' : '#888', transition: 'transform 0.2s' }}
+                        style={{ position: 'absolute', top: '30px', right: '30px', backgroundColor: 'var(--surface-container-highest)', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', fontSize: '1.2rem', color: isInWishlist(product.id) ? 'var(--primary)' : 'var(--text-secondary)', transition: 'transform 0.2s' }}
                         onMouseOver={(e) => e.currentTarget.style.transform='scale(1.1)'}
                         onMouseOut={(e) => e.currentTarget.style.transform='scale(1)'}
                     >

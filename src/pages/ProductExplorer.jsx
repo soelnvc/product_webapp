@@ -57,7 +57,7 @@ const ProductExplorer = () => {
               style={{ 
                 display: 'flex', alignItems: 'center', gap: '15px', 
                 backgroundColor: 'transparent', border: 'none', 
-                color: activeCategory === cat.id ? '#000' : 'var(--text-secondary)',
+                color: activeCategory === cat.id ? 'var(--text-primary)' : 'var(--text-secondary)',
                 fontWeight: activeCategory === cat.id ? 800 : 600,
                 fontSize: '0.8rem', cursor: 'pointer', textAlign: 'left',
                 transition: 'color 0.2s',
