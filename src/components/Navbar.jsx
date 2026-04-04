@@ -1,50 +1,117 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 
 const Navbar = () => {
-  const { cartCount, toggleCart } = useCart();
+  const { cartCount } = useCart();
   const location = useLocation();
+  const [isDark, setIsDark] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q') || '';
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    if (value) {
+      setSearchParams({ q: value });
+    } else {
+      setSearchParams({});
+    }
+  };
+  
+  const isCollectionsPage = location.pathname.includes('/products');
   
   return (
-    <div style={{ padding: '20px 40px', position: 'sticky', top: 0, zIndex: 100, display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(249, 249, 251, 0.95)', backdropFilter: 'blur(12px)' }}>
+    <div style={{ padding: '20px 40px', position: 'sticky', top: 0, zIndex: 100, display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(253, 253, 255, 0.95)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.03)' }}>
       
-      {/* Left Links */}
-      <div style={{ display: 'flex', gap: '50px', alignItems: 'center' }}>
-        <Link to="/" style={{ fontSize: '1.2rem', fontWeight: '800', letterSpacing: '0.02em', color: '#000' }}>
-          THE CURATOR
+      {/* Left Logo */}
+      <Link to="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 900, letterSpacing: '0.02em', color: '#000', textDecoration: 'none' }}>
+        THE CURATOR
+      </Link>
+      
+      {/* Centered Navigation Links */}
+      <nav style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '40px', fontSize: '0.85rem', fontWeight: 600 }}>
+        <Link to="/products" style={{ color: location.pathname.includes('/products') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/products') ? '2px solid #000' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/products')) e.target.style.color = '#000'; }} onMouseOut={(e) => { if (!location.pathname.includes('/products')) e.target.style.color = 'var(--text-secondary)'; }}>
+           Collections
         </Link>
-        <nav style={{ display: 'flex', gap: '30px', fontSize: '0.9rem', fontWeight: 500 }}>
-          <Link to="/products" style={{ color: location.pathname.includes('/products') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/products') ? '2px solid #000' : 'none', paddingBottom: '4px' }}>Collections</Link>
-          <Link to="/new-arrivals" style={{ color: location.pathname.includes('/new-arrivals') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/new-arrivals') ? '2px solid #000' : 'none', paddingBottom: '4px' }}>New Arrivals</Link>
-          <Link to="/archive" style={{ color: location.pathname.includes('/archive') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/archive') ? '2px solid #000' : 'none', paddingBottom: '4px' }}>Archive</Link>
-        </nav>
-      </div>
+        <Link to="/new-arrivals" style={{ color: location.pathname.includes('/new-arrivals') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/new-arrivals') ? '2px solid #000' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/new-arrivals')) e.target.style.color = '#000'; }} onMouseOut={(e) => { if (!location.pathname.includes('/new-arrivals')) e.target.style.color = 'var(--text-secondary)'; }}>
+           New Arrivals
+        </Link>
+        <Link to="/archive" style={{ color: location.pathname.includes('/archive') ? '#000' : 'var(--text-secondary)', borderBottom: location.pathname.includes('/archive') ? '2px solid #000' : 'none', paddingBottom: '4px', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => { if (!location.pathname.includes('/archive')) e.target.style.color = '#000'; }} onMouseOut={(e) => { if (!location.pathname.includes('/archive')) e.target.style.color = 'var(--text-secondary)'; }}>
+           Archive
+        </Link>
+      </nav>
 
-      {/* Center Search / Right Icons */}
-      <div style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
+      {/* Right Core Actions */}
+      <div style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
         
-        {/* Search Bar */}
-        <div style={{ position: 'relative', width: '280px' }}>
-           <span style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', fontSize: '1rem', opacity: 0.5 }}>⚲</span>
-           <input type="text" placeholder="Search" style={{ width: '100%', padding: '12px 16px 12px 42px', backgroundColor: '#f0f0f3', border: 'none', borderRadius: '30px', fontSize: '0.85rem', outline: 'none', fontFamily: "'Inter', sans-serif" }} />
-        </div>
+        {/* Theme Toggle (Light/Dark mode placeholder) */}
+        <button 
+          onClick={() => setIsDark(!isDark)}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', position: 'relative', overflow: 'hidden' }}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {isDark ? (
+              <motion.div
+                key="moon"
+                initial={{ y: 20, rotate: 45, opacity: 0 }}
+                animate={{ y: 0, rotate: 0, opacity: 1 }}
+                exit={{ y: -20, rotate: -45, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="sun"
+                initial={{ y: 20, rotate: 90, opacity: 0 }}
+                animate={{ y: 0, rotate: 0, opacity: 1 }}
+                exit={{ y: -20, rotate: -90, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
 
-        {/* Right Icons */}
-        <nav style={{ display: 'flex', gap: '20px', alignItems: 'center', fontSize: '1.2rem' }}>
-          <Link to="/wishlist" style={{ color: '#000', textDecoration: 'none', paddingBottom: '4px', borderBottom: location.pathname.includes('/wishlist') ? '2px solid #000' : 'none' }}>
-            {location.pathname.includes('/wishlist') ? '♥' : '♡'}
-          </Link>
-          <button onClick={toggleCart} style={{ color: '#000', position: 'relative', background: 'none', border: 'none', fontSize: '1.2rem', paddingBottom: '4px', cursor: 'pointer', borderBottom: location.pathname.includes('/cart') ? '2px solid #000' : 'none' }}>
-            🛒
-            {cartCount > 0 && <span style={{ position: 'absolute', top: '-5px', right: '-10px', background: 'black', color: 'white', borderRadius: '50%', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold' }}>{cartCount}</span>}
-          </button>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-             <div style={{ width: '32px', height: '32px', backgroundColor: '#e0e0e0', borderRadius: '50%', overflow: 'hidden' }}>
-                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Curator" alt="user" style={{ width: '100%', height: '100%' }} />
-             </div>
-          </Link>
-        </nav>
+        {/* Conditional Search Rendering (Only on Collections) */}
+        {isCollectionsPage && (
+          <div style={{ position: 'relative', width: '220px', marginRight: '10px' }}>
+             <svg style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', opacity: 0.5 }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+             <input 
+                type="text" 
+                placeholder="Search" 
+                value={searchQuery}
+                onChange={handleSearch}
+                style={{ width: '100%', padding: '10px 16px 10px 40px', backgroundColor: '#F0F0F3', border: 'none', borderRadius: '30px', fontSize: '0.75rem', fontWeight: 600, outline: 'none', fontFamily: "'Inter', sans-serif" }} 
+              />
+          </div>
+        )}
+
+        {/* Wishlist Link */}
+        <Link to="/wishlist" style={{ color: '#000', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+           <svg width="18" height="18" viewBox="0 0 24 24" fill={location.pathname.includes('/wishlist') ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </Link>
+        
+        {/* Full Cart Link */}
+        <Link to="/cart" style={{ color: '#000', position: 'relative', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill={location.pathname.includes('/cart') ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            {cartCount > 0 && <span style={{ position: 'absolute', top: '-6px', right: '-12px', background: '#000', color: '#fff', borderRadius: '30px', padding: '0 5px', minWidth: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', fontWeight: '800' }}>{cartCount}</span>}
+        </Link>
+
       </div>
     </div>
   );

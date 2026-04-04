@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import heroModel from '../assets/hero_model.png';
+import briefcase from '../assets/briefcase.png';
+import textureLight from '../assets/texture_light.png';
+import editorialImg from '../assets/editorial.png';
+import booksImg from '../assets/books.png';
+import abstractImg from '../assets/abstract.png';
 
 const Home = () => {
   return (
@@ -32,7 +38,7 @@ const Home = () => {
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(5rem, 10vw, 8rem)', fontStyle: 'italic', fontWeight: 500, lineHeight: 1.1, marginBottom: '40px' }}>
             The Essence<br/>of Form
           </h1>
-          <Link to="/products" style={{ display: 'inline-block', backgroundColor: '#000', color: '#fff', padding: '16px 40px', borderRadius: '30px', fontWeight: 600, fontSize: '0.875rem', letterSpacing: '0.05em', transition: 'transform 0.2s' }}>
+          <Link to="/archive" style={{ display: 'inline-block', backgroundColor: '#000', color: '#fff', padding: '16px 40px', borderRadius: '30px', fontWeight: 600, fontSize: '0.875rem', letterSpacing: '0.05em', transition: 'transform 0.2s', textDecoration: 'none' }} onMouseOver={(e) => e.target.style.transform='scale(1.05)'} onMouseOut={(e) => e.target.style.transform='scale(1)'}>
             ENTER THE ARCHIVE
           </Link>
         </div>
@@ -44,11 +50,11 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.2 }}
           style={{ position: 'absolute', left: '8%', top: '25%', width: '25%', maxWidth: '300px', zIndex: 5 }}
         >
-          <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', aspectRatio: '3/4', border: '8px solid white' }}>
-            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Model" />
-            <div style={{ position: 'absolute', bottom: '15px', left: '15px', backgroundColor: '#fff', padding: '8px 16px', borderRadius: '20px', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.05em' }}>
+          <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', aspectRatio: '3/4', border: '8px solid white', backgroundColor: '#f0f0f0' }}>
+            <img src={heroModel} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Model" />
+            <Link to="/products" style={{ position: 'absolute', bottom: '15px', left: '15px', backgroundColor: '#fff', padding: '12px 20px', borderRadius: '30px', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.1em', color: '#000', textDecoration: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.2s' }} onMouseOver={(e) => e.currentTarget.style.transform='scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform='scale(1)'}>
               THE COLLECTION
-            </div>
+            </Link>
           </div>
         </motion.div>
 
@@ -59,8 +65,8 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.4 }}
           style={{ position: 'absolute', right: '10%', top: '5%', width: '22%', maxWidth: '280px', zIndex: 5 }}
         >
-          <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', aspectRatio: '4/5', border: '8px solid white' }}>
-            <img src="https://images.unsplash.com/photo-1629196914569-b5fe5be1ab1f?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Texture" />
+          <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', aspectRatio: '4/5', border: '8px solid white', backgroundColor: '#f0f0f0' }}>
+            <img src={textureLight} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Texture" />
             <div style={{ position: 'absolute', top: '15px', right: '15px', width: '60px', height: '60px', borderRadius: '50%', backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(10px)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.6rem', textAlign: 'center', fontWeight: 'bold' }}>
               LIMITED<br/>EDITION
             </div>
@@ -85,14 +91,14 @@ const Home = () => {
           
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ position: 'absolute', top: '0', left: '15%', width: '40%', aspectRatio: '1', borderRadius: '30px', overflow: 'hidden' }}>
-             <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Briefcase" />
+            style={{ position: 'absolute', top: '0', left: '15%', width: '40%', aspectRatio: '1', borderRadius: '30px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
+             <img src={briefcase} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Briefcase" />
           </motion.div>
 
           <motion.div 
             initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ position: 'absolute', bottom: '0', left: '0', width: '55%', aspectRatio: '4/3', borderRadius: '30px', overflow: 'hidden' }}>
-             <img src="https://images.unsplash.com/photo-1618365908648-e71bd5716cba?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Helmet" />
+            style={{ position: 'absolute', bottom: '0', left: '0', width: '55%', aspectRatio: '4/3', borderRadius: '30px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
+             <img src={booksImg} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Books" />
              <div style={{ position: 'absolute', bottom: '30px', left: '30px', color: '#fff' }}>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>Objects & Artifacts</h3>
                 <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}>S/S 2024 ACCESSORIES</p>
@@ -101,8 +107,8 @@ const Home = () => {
 
           <motion.div 
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
-            style={{ position: 'absolute', top: '30%', right: '5%', width: '35%', aspectRatio: '3/5', borderRadius: '30px', overflow: 'hidden' }}>
-             <img src="https://images.unsplash.com/photo-1554030638-d699e19d7bdf?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Editorial" />
+            style={{ position: 'absolute', top: '30%', right: '5%', width: '35%', aspectRatio: '3/5', borderRadius: '30px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
+             <img src={editorialImg} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Editorial" />
               <div style={{ position: 'absolute', bottom: '30px', width: '100%', textAlign: 'center', color: '#fff' }}>
                 <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em', marginBottom: '5px' }}>THE ATELIER EXPERIENCE</p>
                 <Link to="/products" style={{ fontSize: '0.8rem', textDecoration: 'underline' }}>DISCOVER MORE</Link>
@@ -118,8 +124,8 @@ const Home = () => {
         
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-          style={{ flex: 1, borderRadius: '40px', overflow: 'hidden', aspectRatio: '4/5' }}>
-          <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Abstract Light" />
+          style={{ flex: 1, borderRadius: '40px', overflow: 'hidden', aspectRatio: '4/5', backgroundColor: '#f0f0f0' }}>
+          <img src={abstractImg} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Abstract Light" />
         </motion.div>
 
         <div style={{ flex: 1 }}>

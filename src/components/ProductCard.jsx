@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const tags = ['AVAILABLE', 'NEW IN', 'LIMITED', 'RESTOCK', 'SOLD OUT', 'EDITION OF 50'];
 
 const ProductCard = ({ product, index }) => {
+  const [imgError, setImgError] = useState(false);
   const randomTag = tags[product.id % tags.length]; // Deterministic fake tag
   
   return (
@@ -17,13 +18,19 @@ const ProductCard = ({ product, index }) => {
             onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
         
-        <div style={{ width: '100%', aspectRatio: '4/5', backgroundColor: '#f3f3f5', borderRadius: '16px', overflow: 'hidden', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Grayscale filter maps arbitrary vibrant API items to Monochromatic Editorial tone */}
-          <img 
-            src={product.image} 
-            alt={product.title} 
-            style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', padding: '40px', filter: 'grayscale(100%) contrast(1.1) brightness(0.95)' }} 
-          />
+        <div style={{ width: '100%', aspectRatio: '4/5', backgroundColor: '#f3f3f5', borderRadius: '16px', overflow: 'hidden', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+          {!imgError ? (
+            <img 
+              src={product.image} 
+              alt={product.title} 
+              onError={() => setImgError(true)}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', padding: '40px', filter: 'grayscale(100%) contrast(1.1) brightness(0.95)' }} 
+            />
+          ) : (
+            <div style={{ textAlign: 'center', padding: '20px' }}>
+               <p style={{ fontSize: '0.65rem', fontWeight: 800, color: '#C0C0C0', letterSpacing: '0.1em' }}>PRODUCT IMAGE<br/>COMING SOON</p>
+            </div>
+          )}
         </div>
         
         <div style={{ padding: '0 4px' }}>

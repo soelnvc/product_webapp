@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
 import ProductCard from '../components/ProductCard';
 
@@ -27,7 +28,16 @@ const categories = [
 const ProductExplorer = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [priceRange, setPriceRange] = useState(1200);
+  const [searchParams] = useSearchParams();
+  const searchQuery = (searchParams.get('q') || '').toLowerCase();
+  
   const { products, loading, error } = useProducts(activeCategory === 'all' ? null : activeCategory);
+
+  const filteredProducts = products.filter(p => {
+    const matchesPrice = p.price <= priceRange;
+    const matchesSearch = !searchQuery || p.title.toLowerCase().includes(searchQuery) || p.category?.toLowerCase().includes(searchQuery);
+    return matchesPrice && matchesSearch;
+  });
 
   return (
     <div style={{ backgroundColor: '#F9F9FB', minHeight: '100vh', padding: '0 40px', maxWidth: '1600px', margin: '0 auto', display: 'flex' }}>
@@ -99,9 +109,16 @@ const ProductExplorer = () => {
           <div style={{ color: 'red' }}>Failed to load collection.</div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '25px' }}>
-            {products.filter(p => p.price <= priceRange).map((product, idx) => (
-              <ProductCard key={product.id} product={product} index={idx} />
-            ))}
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product, idx) => (
+                <ProductCard key={product.id} product={product} index={idx} />
+              ))
+            ) : (
+              <div style={{ gridColumn: '1 / -1', padding: '100px 0', textAlign: 'center' }}>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-secondary)' }}>No products found matching "{searchQuery}"</h3>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '10px' }}>Try adjusting your search or filters.</p>
+              </div>
+            )}
           </div>
         )}
       </main>

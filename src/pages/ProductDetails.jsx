@@ -13,6 +13,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSize, setSelectedSize] = useState('M');
+  const [imgError, setImgError] = useState(false);
   
   const { addToCart, setIsCartOpen } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
@@ -54,8 +55,14 @@ const ProductDetails = () => {
             
             {/* Left Image Column */}
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ flex: '1.2 1 500px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div style={{ width: '100%', height: '700px', borderRadius: '35px', overflow: 'hidden', backgroundColor: '#F0F0F3', position: 'relative' }}>
-                    <img src={product.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={product.title} />
+                <div style={{ width: '100%', height: '700px', borderRadius: '35px', overflow: 'hidden', backgroundColor: '#F0F0F3', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {!imgError ? (
+                        <img src={product.image} onError={() => setImgError(true)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={product.title} />
+                    ) : (
+                        <div style={{ textAlign: 'center' }}>
+                           <p style={{ fontSize: '0.8rem', fontWeight: 800, color: '#C0C0C0', letterSpacing: '0.2em' }}>PRODUCT IMAGE<br/>COMING SOON</p>
+                        </div>
+                    )}
                     <button 
                         onClick={() => toggleWishlist(product)} 
                         style={{ position: 'absolute', top: '30px', right: '30px', backgroundColor: '#fff', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.05)', fontSize: '1.2rem', color: isInWishlist(product.id) ? '#000' : '#888', transition: 'transform 0.2s' }}
