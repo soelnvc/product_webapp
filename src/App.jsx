@@ -6,6 +6,7 @@ import { WishlistProvider } from './context/WishlistContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
+import CustomCursor from './components/CustomCursor';
 
 // Pages
 import Home from './pages/Home';
@@ -32,6 +33,7 @@ function App() {
   return (
     <CartProvider>
       <WishlistProvider>
+        <CustomCursor />
         <BrowserRouter>
           <Layout>
             <Routes>
