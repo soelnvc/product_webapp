@@ -1,3 +1,4 @@
+// This page is like a store aisle where users can look at everything available
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
@@ -26,13 +27,16 @@ const categories = [
 ];
 
 const ProductExplorer = () => {
+  // activeCategory remembers which group of products is selected (like ALL or TECH)
   const [activeCategory, setActiveCategory] = useState('all');
+  // priceRange remembers the maximum price the user wants to pay
   const [priceRange, setPriceRange] = useState(1200);
   const [searchParams] = useSearchParams();
   const searchQuery = (searchParams.get('q') || '').toLowerCase();
   
   const { products, loading, error } = useProducts(activeCategory === 'all' ? null : activeCategory);
 
+  // This "filter" only keeps products that match the selected price and search word
   const filteredProducts = products.filter(p => {
     const matchesPrice = p.price <= priceRange;
     const matchesSearch = !searchQuery || p.title.toLowerCase().includes(searchQuery) || p.category?.toLowerCase().includes(searchQuery);

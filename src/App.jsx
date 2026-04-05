@@ -1,3 +1,4 @@
+// Root application component - Configuration of providers and routes
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
@@ -19,6 +20,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Wishlist from './pages/Wishlist';
 
+// The wrapper that organizes how the page looks (Header on top, content in middle, footer at bottom)
 const Layout = ({ children }) => (
   <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <Navbar />
@@ -30,6 +32,7 @@ const Layout = ({ children }) => (
   </div>
 );
 
+// The main App component where we wrap everything in the "Providers" (to share data like cart items or theme across the whole site)
 function App() {
   return (
     <ThemeProvider>
@@ -38,6 +41,7 @@ function App() {
           <CustomCursor />
           <BrowserRouter>
             <Layout>
+              {/* This section defines which page to show based on the URL in the browser bar */}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<ProductExplorer />} />

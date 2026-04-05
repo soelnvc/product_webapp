@@ -1,3 +1,4 @@
+// This page shows everything you are about to buy and the final price
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useCart } from '../hooks/useCart';
@@ -6,6 +7,7 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
   
+  // This calculates 8% tax and adds it to the total price
   const tax = cartTotal * 0.08;
   const finalTotal = cartTotal + tax;
 

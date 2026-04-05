@@ -1,3 +1,4 @@
+// The Menu bar at the top with the logo and links to other pages
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
 
+  // This keeps track of what the user is typing in the search box
   const handleSearch = (e) => {
     const value = e.target.value;
     if (value) {

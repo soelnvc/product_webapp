@@ -1,3 +1,4 @@
+// This list contains all the products with their names, prices, and images
 const mockProducts = [
   { id: 1, title: 'Sculpted Wool Overcoat', price: 890, category: "men's clothing", image: 'https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=600&auto=format&fit=crop' },
   { id: 2, title: 'Essential Base Layer', price: 120, category: "women's clothing", image: 'https://images.unsplash.com/photo-1582126893264-902ba4033b00?q=80&w=600&auto=format&fit=crop' },
@@ -45,10 +46,12 @@ export const newArrivalsInventory = [
   { type: 'philosophy', title: 'The Final Details', desc: 'True artistry exists in the finishing layers, ensuring nothing goes unnoticed.', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop' },
 ];
 
+// This function asks for the full list of all products
 export const fetchProducts = async () => {
   return new Promise(resolve => setTimeout(() => resolve(mockProducts), 500));
 };
 
+// This function asks for just one single product using its ID number
 export const fetchProductById = async (id) => {
   return new Promise(resolve => setTimeout(() => {
     if (id.toString().startsWith('na-')) {
@@ -72,10 +75,12 @@ export const fetchProductById = async (id) => {
   }, 500));
 };
 
+// This function lists the different groups products can belong to (like Tech or Clothing)
 export const fetchCategories = async () => {
   return new Promise(resolve => setTimeout(() => resolve(["electronics", "jewelery", "men's clothing", "women's clothing"]), 500));
 };
 
+// This function gets only the products from one group (like just "Men's Clothing")
 export const fetchProductsByCategory = async (category) => {
   return new Promise(resolve => setTimeout(() => resolve(mockProducts.filter(p => p.category === category)), 500));
 };

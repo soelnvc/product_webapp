@@ -1,3 +1,4 @@
+// Homepage: Hero sections and curated editorial sections
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -13,6 +14,7 @@ const Home = () => {
     <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', overflow: 'hidden' }}>
       
       {/* Hero Section */}
+      {/* The big welcome section with the main brand title */}
       <section style={{ position: 'relative', padding: '120px 40px', minHeight: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         
         {/* Background "THE CURATOR" Text */}
@@ -76,6 +78,7 @@ const Home = () => {
       </section>
 
       {/* Curated Selections Section */}
+      {/* A section showing off specific groups of items (like briefcases or books) */}
       <section style={{ padding: '150px 40px', maxWidth: '1400px', margin: '0 auto', display: 'flex', gap: '60px', alignItems: 'center' }}>
         
         {/* Text Side */}
@@ -151,6 +154,7 @@ const Home = () => {
       </section>
 
       {/* Scrolling Marquee */}
+      {/* The moving text bar at the bottom for limited edition announcements */}
       <div style={{ backgroundColor: 'var(--primary)', color: 'var(--on-primary)', padding: '40px 0', overflow: 'hidden', whiteSpace: 'nowrap', marginTop: '100px' }}>
         <motion.div 
           animate={{ x: [0, -1000] }}

@@ -1,3 +1,4 @@
+// This page is the final checkout where users pay for their items
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
@@ -6,6 +7,7 @@ import * as yup from 'yup';
 import { useCart } from '../hooks/useCart';
 import { useNavigate, Link } from 'react-router-dom';
 
+// This "schema" sets the rules for the form (like "name is required")
 const schema = yup.object().shape({
   firstName: yup.string().required('First name is required'),
   lastName: yup.string().required('Last name is required'),
@@ -31,10 +33,13 @@ const Checkout = () => {
   const tax = cartTotal * 0.08; // 8% tax
   const finalTotal = cartTotal + shippingCost + tax;
 
+  // This function runs when the "Complete Purchase" button is clicked
   const onSubmit = (data) => {
-    console.log("Order Submitted:", { ...data, shippingMethod, total: finalTotal });
+    // Proceed with order processing (mock)
+    // Detailed order data: { ...data, shippingMethod, total: finalTotal }
     clearCart();
     setIsSuccess(true);
+    // After 3 seconds, go back to the home page
     setTimeout(() => {
       navigate('/');
     }, 3000);

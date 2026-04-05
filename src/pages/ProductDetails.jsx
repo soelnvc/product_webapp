@@ -1,3 +1,4 @@
+// This page shows everything about one single item after you click on it
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,6 +8,7 @@ import { useWishlist } from '../hooks/useWishlist';
 import Loader from '../components/Loader';
 
 const ProductDetails = () => {
+  // Each "useState" remembers something specific, like the product info or if it's still loading
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
@@ -18,6 +20,7 @@ const ProductDetails = () => {
   const { addToCart, setIsCartOpen } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
 
+  // "useEffect" runs a bit of code as soon as the page opens (like fetching the product details)
   useEffect(() => {
     const loadProduct = async () => {
       try {
@@ -41,6 +44,7 @@ const ProductDetails = () => {
     navigate('/checkout');
   };
 
+  // Adds the current item to the shopping cart for later
   const handleAddToBag = () => {
     addToCart(product);
   };
