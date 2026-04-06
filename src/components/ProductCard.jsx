@@ -41,10 +41,20 @@ const ProductCard = ({ product, index }) => {
             {product.category}
           </p>
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--primary)' }}>
-              ${product.price.toFixed(2)}
-            </span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--primary)' }}>
+                ${product.price.toFixed(2)}
+              </span>
+              {product.rating && (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '12px', gap: '2px' }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style={{ color: '#FFB800' }}>
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-secondary)' }}>{product.rating}</span>
+                </div>
+              )}
+            </div>
             <span style={{ fontSize: '0.55rem', fontWeight: 600, letterSpacing: '0.1em', color: '#b0b0b0', textTransform: 'uppercase' }}>
                {randomTag}
             </span>

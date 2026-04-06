@@ -1,15 +1,15 @@
 // This list contains all the products with their names, prices, and images
 const mockProducts = [
-  { id: 1, title: 'Sculpted Wool Overcoat', price: 890, category: "men's clothing", image: 'https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=600&auto=format&fit=crop' },
-  { id: 2, title: 'Essential Base Layer', price: 120, category: "women's clothing", image: 'https://images.unsplash.com/photo-1582126893264-902ba4033b00?q=80&w=600&auto=format&fit=crop' },
-  { id: 3, title: 'Nero Leather Trainer', price: 450, category: "men's clothing", image: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=600&auto=format&fit=crop' },
-  { id: 4, title: 'Cashmere V-Neck', price: 520, category: "women's clothing", image: 'https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?q=80&w=600&auto=format&fit=crop' },
-  { id: 5, title: 'Architectural Trouser', price: 380, category: "men's clothing", image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop' },
-  { id: 6, title: 'Gallery Tote Bag', price: 740, category: "jewelery", image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=600&auto=format&fit=crop' },
-  { id: 7, title: 'Minimalist Timepiece', price: 1100, category: "jewelery", image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop' },
-  { id: 8, title: 'Oversized Silk Shirt', price: 410, category: "women's clothing", image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=600&auto=format&fit=crop' },
-  { id: 9, title: 'Structured Blazer', price: 950, category: "men's clothing", image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop' },
-  { id: 10, title: 'Studio Headphones', price: 600, category: "electronics", image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop' }
+  { id: 1, title: 'Sculpted Wool Overcoat', price: 890, category: "men's clothing", image: 'https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=600&auto=format&fit=crop', rating: 4.8, createdAt: '2024-03-10' },
+  { id: 2, title: 'Essential Base Layer', price: 120, category: "women's clothing", image: 'https://images.unsplash.com/photo-1582126893264-902ba4033b00?q=80&w=600&auto=format&fit=crop', rating: 4.5, createdAt: '2024-02-15' },
+  { id: 3, title: 'Nero Leather Trainer', price: 450, category: "men's clothing", image: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=600&auto=format&fit=crop', rating: 4.9, createdAt: '2024-03-20' },
+  { id: 4, title: 'Cashmere V-Neck', price: 520, category: "women's clothing", image: 'https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?q=80&w=600&auto=format&fit=crop', rating: 4.7, createdAt: '2024-01-10' },
+  { id: 5, title: 'Architectural Trouser', price: 380, category: "men's clothing", image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop', rating: 4.6, createdAt: '2024-03-05' },
+  { id: 6, title: 'Gallery Tote Bag', price: 740, category: "jewelery", image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=600&auto=format&fit=crop', rating: 4.4, createdAt: '2024-02-28' },
+  { id: 7, title: 'Minimalist Timepiece', price: 1100, category: "jewelery", image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop', rating: 5.0, createdAt: '2024-03-25' },
+  { id: 8, title: 'Oversized Silk Shirt', price: 410, category: "women's clothing", image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=600&auto=format&fit=crop', rating: 4.3, createdAt: '2024-01-20' },
+  { id: 9, title: 'Structured Blazer', price: 950, category: "men's clothing", image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop', rating: 4.7, createdAt: '2024-03-15' },
+  { id: 10, title: 'Studio Headphones', price: 600, category: "electronics", image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop', rating: 4.8, createdAt: '2024-02-05' }
 ];
 
 export const newArrivalsInventory = [
