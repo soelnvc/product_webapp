@@ -9,7 +9,20 @@ import editorialImg from '../assets/editorial.png';
 import booksImg from '../assets/books.png';
 import abstractImg from '../assets/abstract.png';
 
+// Swiper imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { useProducts } from '../hooks/useProducts';
+import ProductCard from '../components/ProductCard';
+
 const Home = () => {
+  const { products, loading } = useProducts();
+  const featuredProducts = products.slice(0, 6);
+
   return (
     <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', overflow: 'hidden' }}>
       
@@ -120,6 +133,43 @@ const Home = () => {
 
         </div>
 
+      </section>
+
+      {/* Featured Products Carousel */}
+      <section style={{ padding: '100px 0', backgroundColor: 'var(--surface-container-low)' }}>
+        <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto 60px auto' }}>
+          <p style={{ fontSize: '0.75rem', letterSpacing: '0.1em', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '20px' }}>CURATED DISCOVERY</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '4.5rem', lineHeight: 1 }}>Featured<br/>Collection</h2>
+             <Link to="/products" style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none', borderBottom: '2px solid var(--primary)', paddingBottom: '5px' }}>VIEW ALL PRODUCTS</Link>
+          </div>
+        </div>
+
+        <div style={{ paddingLeft: '40px' }}>
+          {loading ? (
+            <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading Collection...</div>
+          ) : (
+            <Swiper
+              modules={[Autoplay, Navigation, Pagination]}
+              spaceBetween={30}
+              slidesPerView={1.5}
+              breakpoints={{
+                640: { slidesPerView: 2.5 },
+                1024: { slidesPerView: 3.5 },
+                1440: { slidesPerView: 4.5 },
+              }}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              className="featured-swiper"
+              style={{ paddingBottom: '60px' }}
+            >
+              {featuredProducts.map((product, idx) => (
+                <SwiperSlide key={product.id}>
+                  <ProductCard product={product} index={idx} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+        </div>
       </section>
 
       {/* Intentional Impairment Section */}

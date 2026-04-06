@@ -5,26 +5,21 @@ import { useSearchParams } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
 import { useDebounce } from '../hooks/useDebounce';
 import ProductCard from '../components/ProductCard';
+import { 
+  HiOutlineSquares2X2, 
+  HiOutlineUser, 
+  HiOutlineSparkles, 
+  HiOutlineDeviceTablet, 
+  HiOutlineTag 
+} from 'react-icons/hi2'; // Using HI2 for more modern look
 
 const categories = [
-  { id: 'all', name: 'ALL PRODUCTS', icon: (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z"/></svg>
-  ) },
-  { id: "men's clothing", name: 'OUTERWEAR', icon: (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 8l1.5 12h13L20 8l-8-6zm0 2.5l5.5 4-1 9.5H7.5l-1-9.5L12 4.5z"/></svg>
-  ) },
-  { id: "women's clothing", name: 'WOMENSWEAR', icon: (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.4 6L12 2 8.6 6H4v2h2v14h12V8h2V6h-4.6zM16 20H8V8h8v12z"/></svg>
-  ) },
-  { id: "jewelery", name: 'ACCESSORIES', icon: (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4H6C4.9 4 4 4.9 4 6v2c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM6 16c0 3.31 2.69 6 6 6s6-2.69 6-6V9H6v7z"/></svg>
-  ) },
-  { id: "electronics", name: 'TECH', icon: (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>
-  ) },
-  { id: "sale", name: 'SALE', icon: (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.41l9 9c.36.36.86.59 1.41.59s1.05-.22 1.41-.59l7-7c.36-.36.59-.86.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
-  ) }
+  { id: 'all', name: 'ALL PRODUCTS', icon: <HiOutlineSquares2X2 size={16} /> },
+  { id: "men's clothing", name: 'OUTERWEAR', icon: <HiOutlineUser size={16} /> },
+  { id: "women's clothing", name: 'WOMENSWEAR', icon: <HiOutlineUser size={16} /> },
+  { id: "jewelery", name: 'ACCESSORIES', icon: <HiOutlineSparkles size={16} /> },
+  { id: "electronics", name: 'TECH', icon: <HiOutlineDeviceTablet size={16} /> },
+  { id: "sale", name: 'SALE', icon: <HiOutlineTag size={16} /> }
 ];
 
 const ProductExplorer = () => {

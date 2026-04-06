@@ -1,4 +1,6 @@
 import React, { createContext, useReducer, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 const CartContext = createContext();
 
@@ -14,7 +16,7 @@ const cartReducer = (state, action) => {
           )
         };
       }
-      return { ...state, items: [...state.items, { ...action.payload, quantity: 1 }] };
+      return { ...state, items: [...state.items, { ...action.payload, cartId: uuidv4(), quantity: 1 }] };
     }
     case 'REMOVE_FROM_CART':
       return { ...state, items: state.items.filter(item => item.id !== action.payload) };
@@ -46,10 +48,28 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(state.items));
   }, [state.items]);
 
-  const addToCart = (product) => dispatch({ type: 'ADD_TO_CART', payload: product });
-  const removeFromCart = (id) => dispatch({ type: 'REMOVE_FROM_CART', payload: id });
+  const addToCart = (product) => {
+    dispatch({ type: 'ADD_TO_CART', payload: product });
+    toast.success(`${product.title} added to bag`, {
+      style: { backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid var(--outline-variant)', borderRadius: '12px', fontSize: '0.85rem', fontWeight: 600 }
+    });
+  };
+  
+  const removeFromCart = (id) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: id });
+    toast.info('Item removed from bag', {
+      style: { backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid var(--outline-variant)', borderRadius: '12px', fontSize: '0.85rem', fontWeight: 600 }
+    });
+  };
+  
   const updateQuantity = (id, quantity) => dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
-  const clearCart = () => dispatch({ type: 'CLEAR_CART' });
+  
+  const clearCart = () => {
+    dispatch({ type: 'CLEAR_CART' });
+    toast.info('Bag cleared', {
+      style: { backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid var(--outline-variant)', borderRadius: '12px', fontSize: '0.85rem', fontWeight: 600 }
+    });
+  };
 
   const cartTotal = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
   const cartCount = state.items.reduce((count, item) => count + item.quantity, 0);
