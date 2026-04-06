@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { fetchProductById } from '../services/api';
+import { fetchProductById, fetchProductsByCategory } from '../services/api';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
 import Loader from '../components/Loader';
@@ -12,6 +12,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSize, setSelectedSize] = useState('M');
@@ -27,6 +28,13 @@ const ProductDetails = () => {
         setLoading(true);
         const data = await fetchProductById(id);
         setProduct(data);
+        
+        // After loading the main product, we fetch similar items for the recommended section
+        if (data && data.category) {
+            const related = await fetchProductsByCategory(data.category);
+            // We filter out the current product so it doesn't recommend itself
+            setRelatedProducts(related.filter(p => p.id !== data.id).slice(0, 3));
+        }
       } catch (err) {
         setError(err.message || 'Failed to fetch product details.');
       } finally {
@@ -200,35 +208,36 @@ const ProductDetails = () => {
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
-                    {/* Item 1 */}
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: '#111' }}>
-                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} alt="Structured Raw Jeans" />
-                        </div>
-                        <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--text-secondary)', marginBottom: '5px' }}>DENIM</p>
-                        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '5px' }}>Structured Raw Jeans</h3>
-                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>$250.00</p>
-                    </div>
-                    
-                    {/* Item 2 */}
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: '#F0F0F3' }}>
-                            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.05)' }} alt="Gloss Chelsea Boot" />
-                        </div>
-                        <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--text-secondary)', marginBottom: '5px' }}>FOOTWEAR</p>
-                        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '5px' }}>Gloss Chelsea Boot</h3>
-                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>$520.00</p>
-                    </div>
-
-                    {/* Item 3 */}
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: 'var(--archive-btn-bg)' }}>
-                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Organic Cotton Tee" />
-                        </div>
-                        <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--text-secondary)', marginBottom: '5px' }}>BASICS</p>
-                        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '5px' }}>Organic Cotton Tee</h3>
-                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>$85.00</p>
-                    </div>
+                    {relatedProducts.length > 0 ? (
+                        relatedProducts.map((item) => (
+                            <Link 
+                                key={item.id} 
+                                to={`/product/${item.id}`} 
+                                style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit', transition: 'transform 0.3s' }}
+                                onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-10px)'}
+                                onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                            >
+                                <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: 'var(--surface-container-low)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <img src={item.image} style={{ width: '70%', height: '70%', objectFit: 'contain', mixBlendMode: 'var(--image-blend, multiply)' }} alt={item.title} />
+                                </div>
+                                <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--text-secondary)', marginBottom: '5px', textTransform: 'uppercase' }}>{item.category}</p>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '5px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.title}</h3>
+                                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>${item.price.toFixed(2)}</p>
+                            </Link>
+                        ))
+                    ) : (
+                        // Fallback items if for some reason we have no related products (linking to products page as dummy action)
+                        [1, 2, 3].map((i) => (
+                            <Link key={i} to="/products" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit' }}>
+                                <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: '30px', overflow: 'hidden', marginBottom: '20px', backgroundColor: '#111' }}>
+                                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=600&auto=format&fit=crop" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} alt="Structured Raw Jeans" />
+                                </div>
+                                <p style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--text-secondary)', marginBottom: '5px' }}>PLACEHOLDER</p>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '5px' }}>Related Item #{i}</h3>
+                                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>$0.00</p>
+                            </Link>
+                        ))
+                    )}
                 </div>
             </div>
         </section>
