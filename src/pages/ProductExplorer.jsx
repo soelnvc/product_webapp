@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
+import { useDebounce } from '../hooks/useDebounce';
 import ProductCard from '../components/ProductCard';
 
 const categories = [
@@ -30,10 +31,11 @@ const ProductExplorer = () => {
   // activeCategory remembers which group of products is selected (like ALL or TECH)
   const [activeCategory, setActiveCategory] = useState('all');
   // priceRange remembers the maximum price the user wants to pay
-  const [priceRange, setPriceRange] = useState(1200);
+  const [priceRange, setPriceRange] = useState(10000);
   const [sortBy, setSortBy] = useState('default');
   const [searchParams] = useSearchParams();
-  const searchQuery = (searchParams.get('q') || '').toLowerCase();
+  const rawQuery = (searchParams.get('q') || '').toLowerCase();
+  const searchQuery = useDebounce(rawQuery, 300);
   
   const { products, loading, error } = useProducts(activeCategory === 'all' ? null : activeCategory);
 
@@ -55,7 +57,7 @@ const ProductExplorer = () => {
 
   const clearFilters = () => {
     setActiveCategory('all');
-    setPriceRange(1200);
+    setPriceRange(10000);
     setSortBy('default');
   };
 
@@ -95,7 +97,7 @@ const ProductExplorer = () => {
             <p style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', letterSpacing: '0.05em', marginBottom: '20px', fontWeight: 600 }}>PRICE RANGE</p>
             <input 
               type="range" 
-              min="0" max="1500" 
+              min="0" max="10000" 
               value={priceRange} 
               onChange={(e) => setPriceRange(e.target.value)}
               style={{ width: '100%', cursor: 'pointer', accentcolor: 'var(--primary)' }}

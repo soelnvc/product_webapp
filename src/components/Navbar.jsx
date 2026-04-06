@@ -1,25 +1,36 @@
 // The Menu bar at the top with the logo and links to other pages
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { useTheme } from '../context/ThemeContext';
+import { useDebounce } from '../hooks/useDebounce';
 
 const Navbar = () => {
   const { cartCount } = useCart();
   const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('q') || '';
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  // This keeps track of what the user is typing in the search box
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    if (value) {
-      setSearchParams({ q: value });
+  // Sync internal state with URL if URL changes (e.g. on page load)
+  useEffect(() => {
+    setSearchTerm(searchParams.get('q') || '');
+  }, [searchParams]);
+
+  // This updates the URL only after the user stops typing for 500ms
+  useEffect(() => {
+    const q = debouncedSearchTerm.trim();
+    if (q) {
+      setSearchParams({ q });
     } else {
       setSearchParams({});
     }
+  }, [debouncedSearchTerm, setSearchParams]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
   
   const isCollectionsPage = location.pathname.includes('/products');
@@ -97,7 +108,7 @@ const Navbar = () => {
              <input 
                 type="text" 
                 placeholder="Search" 
-                value={searchQuery}
+                value={searchTerm}
                 onChange={handleSearch}
                 style={{ width: '100%', padding: '10px 16px 10px 40px', backgroundColor: 'var(--surface-container-low)', color: 'var(--text-primary)', border: `1px solid var(--outline-variant)`, borderRadius: '30px', fontSize: '0.75rem', fontWeight: 600, outline: 'none', fontFamily: "'Inter', sans-serif" }} 
               />
