@@ -54,8 +54,29 @@ const ProductDetails = () => {
   return (
     <div style={{ backgroundColor: 'var(--surface)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         
+        {/* Back Button */}
+        <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '30px 40px 0 40px' }}>
+            <button 
+                onClick={(e) => { 
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                    if (window.history.length > 1) {
+                        navigate(-1);
+                    } else {
+                        navigate('/new-arrivals');
+                    }
+                }} 
+                style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', cursor: 'pointer', color: 'var(--text-secondary)', transition: 'color 0.2s', padding: '0' }}
+                onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
+                onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+            >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                BACK
+            </button>
+        </div>
+
         {/* Main Product Section */}
-        <section style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '60px 40px', display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
+        <section style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '30px 40px 60px 40px', display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
             
             {/* Left Image Column */}
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ flex: '1.2 1 500px', display: 'flex', flexDirection: 'column', gap: '20px' }}>

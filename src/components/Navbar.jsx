@@ -20,21 +20,28 @@ const Navbar = () => {
     setSearchTerm(searchParams.get('q') || '');
   }, [searchParams]);
 
-  // This updates the URL only after the user stops typing for 500ms
-  useEffect(() => {
-    const q = debouncedSearchTerm.trim();
-    if (q) {
-      setSearchParams({ q });
-    } else {
-      setSearchParams({});
-    }
-  }, [debouncedSearchTerm, setSearchParams]);
+  const isCollectionsPage = location.pathname.includes('/products');
 
-  const handleSearch = (e) => {
+  // This updates the URL only after the user stops typing for 500ms
+  // We use { replace: true } to prevent bloating the history stack, which was causing the "double back click" issue
+  useEffect(() => {
+    if (!isCollectionsPage) return; // Only sync search params on the collections page
+
+    const q = debouncedSearchTerm.trim();
+    const currentQ = searchParams.get('q') || '';
+    
+    if (q !== currentQ) {
+      if (q) {
+        setSearchParams({ q }, { replace: true });
+      } else {
+        setSearchParams({}, { replace: true });
+      }
+    }
+  }, [debouncedSearchTerm, setSearchParams, isCollectionsPage, searchParams]);
+
+   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
-  
-  const isCollectionsPage = location.pathname.includes('/products');
   
   return (
     <div style={{ padding: '20px 40px', position: 'sticky', top: 0, zIndex: 100, display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: isDark ? 'rgba(10, 10, 10, 0.95)' : 'rgba(253, 253, 255, 0.95)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)'}` }}>
